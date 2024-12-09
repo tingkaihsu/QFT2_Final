@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{braket}
 \usepackage{physics}
+\usepackage{simplewick}
 \usepackage{graphicx}
 \usepackage{times}
 \usepackage[export]{adjustbox}
@@ -16,6 +17,7 @@
 \usepackage{color}
 \usepackage{cite}
 \usepackage{slashed}
+\usepackage{amsmath}
 \hypersetup{
 colorlinks=true,
 linkcolor=blue,
@@ -225,19 +227,18 @@ Using the three-point correlation function, show that $f_{\f\f\cO}$ vanishes unl
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-We can pair up the operator (12)(34) by assuming their relative positions are separated well to avoid operator insertions crossing, and then we can do the OPE in pairs,\footnote{Although this computation will look like we need $x_{3,4}$ to be sufficiently far from $x_{1,2}$, it in fact will be correct whenever we can draw any sphere separating $x_1,x_2$ from $x_3,x_4$, and this is because the beautiful scale invariance in CFT.}
-\begin{align}
-\label{eq:fourptcalc}
+We can pair up the operator (12) (34) by assuming their relative positions are separated well to avoid operator insertions crossing, and then we can do the OPE in pairs,\footnote{Although this computation will look like we need $x_{3,4}$ to be sufficiently far from $x_{1,2}$, it in fact will be correct whenever we can draw any sphere separating $x_1,x_2$ from $x_3,x_4$, and this is because the beautiful scale invariance in CFT.}
+\begin{multline}
 \<
 \contraction{}{\f}{(x_1)}{\f}
-\f(x_1)&\f(x_2)
+\f(x_1)\f(x_2)
 \contraction{}{\f}{(x_1)}{\f}
 \f(x_3)\f(x_4)
-\>\nn\\
-&= \sum_{\cO,\cO'}f_{\f\f\cO}f_{\f\f\cO'} C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\<\cO^a(x_2)\cO'^b(x_4)\>\nn\\
-&= \sum_\cO f_{\f\f\cO}^2 C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\frac{I^{ab}(x_{24})}{x_{24}^{2\De_\cO}}\nn\\
-&= \frac{1}{x_{12}^{\De_\f} x_{34}^{\De_\f}}\sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(x_i),
-\end{align}
+\> \\
+= \sum_{\cO,\cO'}f_{\f\f\cO}f_{\f\f\cO'} C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\<\cO^a(x_2)\cO'^b(x_4)\> \\
+= \sum_\cO f_{\f\f\cO}^2 C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\frac{I^{ab}(x_{24})}{x_{24}^{2\De_\cO}} \\
+= \frac{1}{x_{12}^{\De_\f} x_{34}^{\De_\f}}\sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(x_i),
+\end{multline}
 
 where
 \be
