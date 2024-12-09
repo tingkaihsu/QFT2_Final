@@ -75,7 +75,7 @@ tabsize=3
 \newcommand\bP{\mathbf{P}}
 \renewcommand\b\beta
 \renewcommand\a\alpha
-\newcommand\Tr{\mathrm{Tr}}
+% \newcommand\Tr{\mathrm{Tr}}
 \renewcommand\l\lambda
 \newcommand\cL{\mathcal{L}}
 \newcommand\cD{\mathcal{D}}
@@ -199,31 +199,33 @@ This gives an algorithm for computing any flat-space correlation function using 
 
 \subsection{Using the OPE}
 
-We can use the OPE to compute a four-point correlation function of identical scalars.  Recall that c
+We can use the OPE to compute a four-point correlation function of identical scalars. Recall that conformal invariance fixes the function up to some arbitrary function that is conformal-invariant
 \be
-\<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \frac{g(u,v)}{x_{12}^{\De_\f}x_{34}^{\De_\f}},
+\<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \frac{g(u, v)}{x_{12}^{\De_\f}x_{34}^{\De_\f}},
 \ee
-where the cross-ratios $u$, $v$ are given previously in correlation section.
+where the cross-ratios $u$, $v$ are given previous section.
 
-The OPE takes the form
+On the other hand, the OPE of two scalar field takes the form
 \be
 \label{eq:scalarscalarOPE}
 \f(x_1)\f(x_2) &=& \sum_\cO f_{\f\f\cO} C_{a}(x_{12},\ptl_2)\cO^{a}(x_2),
 \ee
-where $\cO^{a}$ can have nonzero spin in general.  For $\cO^a$ to appear in the OPE of two scalars, it must transform in a spin-$\ell$ traceless symmetric tensor representation of $\SO(d)$.
+where $\cO^{a}$ can have nonzero spin in general. 
+% For $\cO^a$ to appear in the OPE of two scalars, it must transform in a spin-$\ell$ traceless symmetric tensor representation of $\SO(d)$.
 % \begin{exercise}
 
-Prove this as follows. Show that $\<\cO^a|\f(x)|\f\>$ vanishes unless $\cO^a$ is a symmetric tensor.  (Tracelessness comes from restricting to irreducible representations of $\SO(d)$.) Argue that if $\<\cO^a|\f(x)|\f\>$ vanishes, then for any descendant $|\psi\>=P\cdots P|\cO\>$, the matrix element $\<\psi|\f(x)|\f\>$ vanishes as well.
+% Prove this as follows. Show that $\<\cO^a|\f(x)|\f\>$ vanishes unless $\cO^a$ is a symmetric tensor.  (Tracelessness comes from restricting to irreducible representations of $\SO(d)$.) Argue that if $\<\cO^a|\f(x)|\f\>$ vanishes, then for any descendant $|\psi\>=P\cdots P|\cO\>$, the matrix element $\<\psi|\f(x)|\f\>$ vanishes as well.
 % \end{exercise}
 % \begin{exercise}
 
-
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 \label{exercise:elleven}
-Using (\ref{eq:conformalthreeptfunction}), show that $f_{\f\f\cO}$ vanishes unless $\ell$ is even.
+Using the three-point correlation function, show that $f_{\f\f\cO}$ vanishes unless $\ell$ is even.
 % \end{exercise}
 
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Assuming the points are configured appropriately, we can pair up the operators (12) (34) and perform the OPE between them,\footnote{Although our computation will make it look like we need $x_{3,4}$ to be sufficiently far from $x_{1,2}$, we will see shortly that the answer will be correct whenever we can draw any sphere separating $x_1,x_2$ from $x_3,x_4$.}
+We can pair up the operator (12)(34) by assuming their relative positions are separated well to avoid operator insertions crossing, and then we can do the OPE in pairs,\footnote{Although this computation will look like we need $x_{3,4}$ to be sufficiently far from $x_{1,2}$, it in fact will be correct whenever we can draw any sphere separating $x_1,x_2$ from $x_3,x_4$, and this is because the beautiful scale invariance in CFT.}
 \begin{align}
 \label{eq:fourptcalc}
 \<
@@ -236,6 +238,7 @@ Assuming the points are configured appropriately, we can pair up the operators (
 &= \sum_\cO f_{\f\f\cO}^2 C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\frac{I^{ab}(x_{24})}{x_{24}^{2\De_\cO}}\nn\\
 &= \frac{1}{x_{12}^{\De_\f} x_{34}^{\De_\f}}\sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(x_i),
 \end{align}
+
 where
 \be
 \label{eq:olddefinitionofg}
