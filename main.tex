@@ -222,7 +222,7 @@ where $\cO^{a}$ can have nonzero spin in general.
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 \label{exercise:elleven}
-Using the three-point correlation function, show that $f_{\f\f\cO}$ vanishes unless $\ell$ is even.
+The three-point correlation function shows that $f_{\f\f\cO}$ vanishes unless $\ell$ is even.
 % \end{exercise}
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
@@ -240,40 +240,45 @@ We can pair up the operator (12) (34) by assuming their relative positions are s
 = \frac{1}{x_{12}^{\De_\f} x_{34}^{\De_\f}}\sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(x_i),
 \end{multline}
 
-where
+In the second line, we use the fact that the correlation function vanishes unless the operators have same eigenvalue, and 
 \be
 \label{eq:olddefinitionofg}
 g_{\De,\ell}(x_i) &\equiv& x_{12}^{\De_\f} x_{34}^{\De_\f} C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\frac{I^{ab}(x_{24})}{x_{24}^{2\De}}.
 \ee
-In (\ref{eq:fourptcalc}), we have chosen an orthonormal basis of operators and used that
+Recall that we've chosen an orthonormal basis of primary operators and used that
 \be
 \label{eq:canonicallynormalizedtwopt}
 \<\cO^a(x)\cO'^b(0)\> &=& \de_{\cO\cO'} \frac{I^{ab}(x)}{x^{2\De_\cO}},
 \ee
-where $I^{ab}(x)=I^{\mu_1\cdots\mu_\ell,\nu_1\cdots\nu_\ell}(x)$ is the tensor in (\ref{eq:twopointfunctionofspinL}).
+where $I^{ab}(x)=I^{\mu_1\cdots\mu_\ell,\nu_1\cdots\nu_\ell}(x)$ is the tensor defined in previous section.
 
-The functions $g_{\De,\ell}(x_i)$ are called {\it conformal blocks}.  Although it's not obvious from the way we defined them, it turns out they are actually functions of the conformal cross-ratios $u,v$ alone.  We thus have the conformal block decomposition
+The functions $g_{\De,\ell}(x_i)$ are called {\it conformal blocks}.  Although not obvious from the definition, they are functions of the conformal cross-ratios $u,v$ alone.  We thus have the conformal block decomposition
 \be
 g(u,v) &=& \sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(u,v).
 \ee
 % \begin{exercise}
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 Using the differential operator (\ref{eq:identicalscalaropeoperator}), show
 \be
 \label{eq:boundaryconditionforblock}
 g_{\De,0}(u,v) &=& u^{\De/2}\p{1+\dots}.
 \ee
 % \end{exercise}
-
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 % \begin{exercise}
 Using (\ref{eq:scalarscalarspinL}), argue that $x^{2\De_\f} C_{\f\f\cO}(x,\ptl)$ is independent of $\Delta_\phi$ for any spin of $\cO$. Conclude that $g_{\De,\ell}(u,v)$ is independent of $\Delta_\phi$. (This is a special property of conformal blocks for operators with identical scaling dimensions.)
 % \end{exercise}
 
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 
-\subsection{In Radial Quantization}
+\subsection{Conformal Block in Radial Quantization}
 
-A conformal block represents the contribution of a single conformal multiplet to a four-point function.  It is instructive to understand it in radial quantization.  Along the way, we'll explain why the blocks are functions of the cross-ratios $u,v$ alone.
+As we mentioned the conformal invariance determines the form of the correlation function, but we also note that the simplest possible conformal invariants are the cross ratios $u, v$, thus the four-point correlation function can be fixed up to a function of cross-ratio. This is similar to the spherical symmetric function $f(r)$. 
 
-Let us pick an origin such that $|x_{3,4}|\geq |x_{1,2}|$, so that
+From this point of view, it is obvious that the conformal block, as the simplest building block for a higher-point correlation function, should solely depend on cross-ratio, as it represents the conformal invariance of the four-point correlation function.
+
+In radial quantization, suppose an origin is chosen such that $|x_{3,4}|\geq |x_{1,2}|$, so that
 \be
 \label{eq:fourptradial}
 \<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \<0|\mathcal{R}\{\f(x_3)\f(x_4)\}\mathcal{R}\{\f(x_1)\f(x_2)\}|0\>.\quad
@@ -305,7 +310,7 @@ Verify the equivalence between (\ref{eq:newdefinitionofg}) and (\ref{eq:olddefin
 
 This expression makes it clear why $g_{\De,\ell}(u,v)$ is a function of $u$ and $v$: the projector $|\cO|$ commutes with all conformal generators (by construction).  Thus, the object above satisfies all the same Ward identities as a four-point function of primaries, and it must take the form (\ref{eq:fourptfunctionofprimaries}).  In path integral language, we can think of $|\cO|$ as a new type of  surface operator.  Here, we've inserted it on a sphere separating $x_{1,2}$ from $x_{3,4}$.
 
-\subsection{From the Conformal Casimir}
+\subsection{Methods of Finding Solutions of Conformal Block Conformal Casimir}
 
 We can now give a simple and elegant way to compute the conformal block, due to Dolan \& Osborn \cite{DO2}.
 Recall that the conformal algebra is isomorphic to $\SO(d+1,1)$, with generators $L_{ab}$ given by (\ref{eq:conformalgeneratorssodplus11}).  The Casimir $C=-\frac 1 2 L^{ab}L_{ab}$ acts with the same eigenvalue on every state in an irreducible representation.  
@@ -361,7 +366,7 @@ k_\beta(x) &\equiv& x^{\beta/2}{}_2F_1\p{\frac \beta 2, \frac \beta 2, \beta, x}
 \ee
 In odd dimensions, no explicit formula in terms of elementary functions is known.  However the blocks can still be computed in a series expansion using the Casimir equation or alternative techniques like recursion relations.
 
-\subsection{Series Expansion}
+% \subsection{Series Expansion of Conformal Block}
 
 It will be helpful to understand the series expansion of the conformal blocks in more detail.
  The ``radial coordinates" of \cite{Pappadopulo:2012jk,Hogervorst:2013sma} are ideal for this purpose.
@@ -450,8 +455,9 @@ g_{\De,\ell}(u,v) &=& g_{\De,\ell}\p{\frac{u}{v},\frac 1 v},\qquad(\textrm{$\ell
 \ee
 % \end{exercise}
 
-\section{2d Ising CFT and Conformal Bootstrap}
-
+\section{Conformal Bootstrap}
+\subsection{Crossing Symmetry}
+\subsection{Spectrum of Primary Operator}
 
 \section{Introduction to Conformal Bootstrap and Its Language}
 
