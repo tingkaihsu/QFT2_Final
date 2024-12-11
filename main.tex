@@ -320,7 +320,7 @@ Each term in the sum is a conformal block times a squared OPE coefficient and so
 
 This expression makes it clear why $g_{\De,\ell}$ is a function of cross ratio $u$ and $v$: \textit{the projector $|\cO|$ commutes with all conformal generators (by construction);therefore, (\ref{eq:newdefinitionofg}) above satisfies all the same Ward identities as a four-point function of primaries, and it must take the form of four-point correlation function}. In path integral language, $|\cO|$ can be thought of as a surface operator, and we insert it on a sphere separating $x_{1,2}$ from $x_{3,4}$.
 
-\subsection{Methods of Finding Solutions of Conformal Block Conformal Casimir}
+\subsection{Methods of Conformal Casimir}
 
 We can now give a simple and elegant way to compute the conformal block, due to Dolan \& Osborn \cite{Dolan_2004}. Recall that the conformal group is isomorphic to $\SO(d+1,1)$, with generators $L_{ab}$ given in the previous section. The usual quadratic Casimir operator $C=-\frac 1 2 L^{ab}L_{ab}$ acts with the same eigenvalue on every state in an irreducible representation.  
 % \begin{exercise}
@@ -343,7 +343,7 @@ C|\cO|=|\cO| C = \l_{\De,\ell}|\cO|.
 In quantum mechanics, the commutation relation of momentum operator $\hat{p}$ and wavefunction $\psi(x)$ can be represented by the partial derivative on wavefunction:
 \begin{equation}
     \label{QM differential eq}
-    \left[p,\psi(x)\right] = -i\frac{\partial\psi(x)}{\partial x}
+    \left[\hat{p},\psi(x)\right] = -i\frac{\partial\psi(x)}{\partial x}
 \end{equation}
 
 Similarly, we can promote the conformal generators $L_{ab}$ to some differential operator $\cL_{ab,i}$ that gives differential equation of $\f(x_i)$,
@@ -368,23 +368,26 @@ Plugging in (\ref{eq:newdefinitionofg}), we find that $g_{\De,\ell}$ satisfies t
 \label{eq:conformalcasimir}
 \cD g_{\De,\ell}(u,v) &=& \l_{\De,\ell} g_{\De,\ell}(u,v),
 \ee
-where the second-order differential operator $\cD$ is given by
+where the second-order differential operator $\cD$ is given by $\cD_{1,2}$
 \be
 \cD &=& 2(z^2(1-z)\ptl_z^2-z^2 \ptl_z) + 2(\bar z^2 (1-\bar z)\ptl_{\bar z}^2-\bar z^2 \ptl_{\bar z})\nn\\
 && + 2(d-2)\frac{z\bar z}{z-\bar z}((1-z)\ptl_z - (1-\bar z)\ptl_{\bar z}).
 \ee
 
-Eq.~(\ref{eq:conformalcasimir}), together with the boundary condition~(\ref{eq:boundaryconditionforblock}) (and its generalization to nonzero spin, which we give shortly), then determines the conformal block $g_{\Delta,\ell}(u,v)$.  In even dimensions, the Casimir equation can be solved analytically.  For example, in 2d and 4d \cite{DO1,DO2},
-\be
-\label{eq:explicitblock2d}
-g_{\De,\ell}^{(2d)}(u,v) &=& k_{\De+\ell}(z)k_{\De-\ell}(\bar z) + k_{\De-\ell}(z)k_{\De+\ell}(\bar z),\\
-\label{eq:explicitblock4d}
-g_{\De,\ell}^{(4d)}(u,v) &=& \frac{z \bar z}{z-\bar z}\p{k_{\De+\ell}(z)k_{\De-\ell-2}(\bar z) - k_{\De-\ell-2}(z)k_{\De+\ell}(\bar z)},\\
-k_\beta(x) &\equiv& x^{\beta/2}{}_2F_1\p{\frac \beta 2, \frac \beta 2, \beta, x}.
-\ee
-In odd dimensions, no explicit formula in terms of elementary functions is known.  However the blocks can still be computed in a series expansion using the Casimir equation or alternative techniques like recursion relations.
+We then determine the conformal block $g_{\Delta,l}(u,v)$ by solving the differential equation (\ref{eq:conformalcasimir}).
+% In even dimensions, the Casimir equation can be solved analytically. For example, in 2d and 4d \cite{DO1,DO2},
+% \be
+% \label{eq:explicitblock2d}
+% g_{\De,\ell}^{(2d)}(u,v) &=& k_{\De+\ell}(z)k_{\De-\ell}(\bar z) + k_{\De-\ell}(z)k_{\De+\ell}(\bar z),\\
+% \label{eq:explicitblock4d}
+% g_{\De,\ell}^{(4d)}(u,v) &=& \frac{z \bar z}{z-\bar z}\p{k_{\De+\ell}(z)k_{\De-\ell-2}(\bar z) - k_{\De-\ell-2}(z)k_{\De+\ell}(\bar z)},\\
+% k_\beta(x) &\equiv& x^{\beta/2}{}_2F_1\p{\frac \beta 2, \frac \beta 2, \beta, x}.
+% \ee
+% In odd dimensions, no explicit formula in terms of elementary functions is known.  
+% However, the blocks can still be computed in a series expansion using the Casimir equation or alternative techniques like recursion relations.
+The block can also be solved by other methods like recursion relations.
 
-% \subsection{Series Expansion of Conformal Block}
+\subsection{Series Expansion of Conformal Blocks}
 
 It will be helpful to understand the series expansion of the conformal blocks in more detail.
  The ``radial coordinates" of \cite{Pappadopulo:2012jk,Hogervorst:2013sma} are ideal for this purpose.
