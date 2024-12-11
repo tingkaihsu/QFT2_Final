@@ -278,44 +278,54 @@ As we mentioned the conformal invariance determines the form of the correlation 
 
 From this point of view, it is obvious that the conformal block, as the simplest building block for a higher-point correlation function, should solely depend on cross-ratio, as it represents the conformal invariance of the four-point correlation function.
 
-In radial quantization, suppose an origin is chosen such that $|x_{3,4}|\geq |x_{1,2}|$, so that
+In radial quantization, suppose an origin is chosen such that $|x_{3,4}|\geq |x_{1,2}|$, then
 \be
 \label{eq:fourptradial}
 \<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \<0|\mathcal{R}\{\f(x_3)\f(x_4)\}\mathcal{R}\{\f(x_1)\f(x_2)\}|0\>.\quad
 \ee
 For a primary operator $\cO$, let $|\cO|$ be the projector onto the conformal multiplet of $\cO$,
 \be
-|\cO| &\equiv& \sum_{\a,\b=\cO,P\cO,PP\cO,\dots} |\a\>\mathcal{N}^{-1}_{\a\b}\<\b|,\qquad
-\mathcal{N}_{\a\b} \equiv \<\a|\b\>.
+|\cO| &\equiv& \sum_{\a,\b=\cO,P\cO,PP\cO,\dots} \mathcal{N}^{-1}_{\a\b}|\a\>\<\b|,\qquad
+\text{Normalization factor }\mathcal{N}_{\a\b} \equiv \<\a|\b\>.
 \ee
-The identity is the sum of these projectors over all primary operators.
+Summing all projects of all primaries, we get the identity,
 \be
 \mathbf{1} &=& \sum_\cO |\cO|.
 \ee
-Inserting this into (\ref{eq:fourptradial}) gives
+Inserting the identity into (\ref{eq:fourptradial}) gives
 \be
 \label{eq:insertingprojector}
 \<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \sum_\cO\<0|\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO|\mathcal{R}\{\f(x_1)\f(x_2)\}|0\>.\nn\\
 \ee
-Each term in the sum is a conformal block times a squared OPE coefficient and some conventional powers of $x_{ij}$,
+
 \be
 \label{eq:newdefinitionofg}
-\<0|\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO|\mathcal{R}\{\f(x_1)\f(x_2)\}|0\> &=& \frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO,\ell_\cO}(u,v).\qquad
+\begin{split}
+\<0|\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO|\mathcal{R}\{\f(x_1)\f(x_2)\}|0\> &=&
+\\
+\sum_{\mathcal{O}',\mathcal{O}''}\<0|\mathcal{R}\{f_{\f\f\cO'} C_a(x_{12},\ptl_2)\cO'^a(x_2) \}|\mathcal{O}|\mathcal{R}\{f_{\f\f\cO''}C_b(x_{34},\ptl_4)\cO''^b(x_4)\}|0\>
+\\
+=\frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO,\ell_\cO}(u,v).\qquad
+\end{split}
 \ee
+Each term in the sum is a conformal block times a squared OPE coefficient and some conventional powers of $x_{ij}$.
+% \frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO,\ell_\cO}(u,v).\qquad
 % \begin{exercise}
 
-Verify the equivalence between (\ref{eq:newdefinitionofg}) and (\ref{eq:olddefinitionofg}) by performing the OPE between $\f(x_3)\f(x_4)$ and $\f(x_1)\f(x_2)$.
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+% Verify the equivalence between (\ref{eq:newdefinitionofg}) and (\ref{eq:olddefinitionofg}) by performing the OPE between $\f(x_3)\f(x_4)$ and $\f(x_1)\f(x_2)$.
 % \end{exercise}
 
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-This expression makes it clear why $g_{\De,\ell}(u,v)$ is a function of $u$ and $v$: the projector $|\cO|$ commutes with all conformal generators (by construction).  Thus, the object above satisfies all the same Ward identities as a four-point function of primaries, and it must take the form (\ref{eq:fourptfunctionofprimaries}).  In path integral language, we can think of $|\cO|$ as a new type of  surface operator.  Here, we've inserted it on a sphere separating $x_{1,2}$ from $x_{3,4}$.
+This expression makes it clear why $g_{\De,\ell}$ is a function of cross ratio $u$ and $v$: \textit{the projector $|\cO|$ commutes with all conformal generators (by construction);therefore, (\ref{eq:newdefinitionofg}) above satisfies all the same Ward identities as a four-point function of primaries, and it must take the form of four-point correlation function}. In path integral language, $|\cO|$ can be thought of as a surface operator, and we insert it on a sphere separating $x_{1,2}$ from $x_{3,4}$.
 
 \subsection{Methods of Finding Solutions of Conformal Block Conformal Casimir}
 
-We can now give a simple and elegant way to compute the conformal block, due to Dolan \& Osborn \cite{DO2}.
-Recall that the conformal algebra is isomorphic to $\SO(d+1,1)$, with generators $L_{ab}$ given by (\ref{eq:conformalgeneratorssodplus11}).  The Casimir $C=-\frac 1 2 L^{ab}L_{ab}$ acts with the same eigenvalue on every state in an irreducible representation.  
+We can now give a simple and elegant way to compute the conformal block, due to Dolan \& Osborn \cite{Dolan_2004}. Recall that the conformal group is isomorphic to $\SO(d+1,1)$, with generators $L_{ab}$ given in the previous section. The usual quadratic Casimir operator $C=-\frac 1 2 L^{ab}L_{ab}$ acts with the same eigenvalue on every state in an irreducible representation.  
 % \begin{exercise}
 
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 Show that this eigenvalue is given by
 \be
 C|\cO\> &=& \l_{\De,\ell}|\cO\>,\nn\\
@@ -323,19 +333,27 @@ C|\cO\> &=& \l_{\De,\ell}|\cO\>,\nn\\
 \ee
 % \end{exercise}
 
-It follows that $C$ gives this same eigenvalue when acting on the projection operator $|\cO|$ from either the left or right,
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+
+Casimir operator $C$ gives this same eigenvalue $\lambda_{\Delta,l}$ when acting on the projection operator $|\cO|$ from either the left or right,
 \be
 C|\cO|=|\cO| C = \l_{\De,\ell}|\cO|.
 \ee
 
-Let $\cL_{ab,i}$ be the differential operator giving the action of $L_{ab}$ on the operator $\f(x_i)$.  Note that
+In quantum mechanics, the commutation relation of momentum operator $\hat{p}$ and wavefunction $\psi(x)$ can be represented by the partial derivative on wavefunction:
+\begin{equation}
+    \label{QM differential eq}
+    \left[p,\psi(x)\right] = -i\frac{\partial\psi(x)}{\partial x}
+\end{equation}
+
+Similarly, we can promote the conformal generators $L_{ab}$ to some differential operator $\cL_{ab,i}$ that gives differential equation of $\f(x_i)$,
 \be
-(\cL_{ab,1}+\cL_{ab,2})\f(x_1)\f(x_2)|0\> &=& \p{[L_{ab},\f(x_1)]\f(x_2)+\f(x_1)[L_{ab},\f(x_2)]}|0\>\nn\\
-&=& L_{ab}\f(x_1)\f(x_2)|0\>.
+(\cL_{ab,1}+\cL_{ab,2})\f(x_1)\f(x_2) &=& \p{[L_{ab},\f(x_1)]\f(x_2)+\f(x_1)[L_{ab},\f(x_2)]}\nn\\
+&=& \left[L_{ab}, \f(x_1)\f(x_2)\right].
 \ee
 Thus, 
 \be
-C\f(x_1)\f(x_2)|0\> &=& \cD_{1,2}\f(x_1)\f(x_2)|0\>,\nn\\
+\left[C, \f(x_1)\f(x_2)\right] &=& \cD_{1,2}\f(x_1)\f(x_2),\nn\\
 \textrm{where}\qquad\cD_{1,2} &\equiv& -\frac 1 2(\cL^{ab}_{1}+\cL^{ab}_{2})(\cL_{ab,1}+\cL_{ab,2}).
 \ee
 We then have
