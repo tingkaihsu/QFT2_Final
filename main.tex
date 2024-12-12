@@ -97,16 +97,88 @@ tabsize=3
 \section{Introduction}
 \section{Quantization and Topological Surface Operator}
 \section{Conformal Algebra}
+
+The conformal symmetry of spacetime is expressed by an extension of the Poincaré group, known as the conformal group. Conformal symmetry encompasses special conformal transformations and dilations and has 15 degrees of freedom in $3+1$ dimensions.
+
+The Lie algebra of the conformal group has the following representation:
+\be
+\label{eq:angularmomentum}
+M_{\mu\nu} \equiv x_{\mu}\ptl_{\nu}-x_{\nu}\ptl_{\mu}
+\ee
+\be
+\label{eq:momentum}
+P_{\mu}\equiv \ptl_{\mu}
+\ee
+\be
+\label{eq:dilatation}
+D\equiv x_{\mu}\partial_{\mu}
+\ee
+
+\be
+\label{eq:specialconformaltransformation}
+K_{\mu} = 2x_{\mu}(x^{\nu}\ptl_{\nu})-x^2\ptl_{\mu}
+\ee
+
+Where $J_{\mu\nu}$ are the Lorentz generators, $P_\mu$ generates translations, which are also the generators in the Poincaré group. Also, $D$ generates scaling transformations (also known as dilatations or dilations) and $K_\mu$ generates the special conformal transformations. It can be shown that these generators can be determined by the traceless stress tensor $T^{\mu\nu}$. For simplicity, let’s leave this part to the appendix.
+
+From the definition of generators (1)-(4), we can then derive their commutation relations, as (5)-(10):
+\[
+(5) \quad \ldots
+\]
+\[
+(6) \quad \ldots
+\]
+\[
+(7) \quad \ldots
+\]
+\[
+(8) \quad \ldots
+\]
+\[
+(9) \quad \ldots
+\]
+\[
+(10) \quad \ldots
+\]
+
+Note that (5)-(7) show that $P_\mu$ and $K_\mu$ transform as vectors under rotation $SO(d)$ and $J_{\mu\nu}$ generates this algebra. (8)-(10) illustrate that $P_\mu$ and $K_\mu$ are lowering and raising operators of $D$, which is similar to $SU(2)$ algebra introduced in the quantum mechanics course.
+
+Formally, we can define $X^M$, where the index $M$ runs from $-1$ to the dimension $d+1$. If we define $X^M$ in the way (11)-(15), then $J_{MN}$ will satisfy the commutation relations of $SO(d+1,1)$:
+\[
+(11) \quad \ldots
+\]
+\[
+(12) \quad \ldots
+\]
+\[
+(13) \quad \ldots
+\]
+\[
+(14) \quad \ldots
+\]
+
+Therefore, it is better to treat the algebra in space $\mathbb{R}^{d+1,1}$ than $\mathbb{R}^{d,1}$, which is the idea of embedding space formalism. In this formalism, we would define another vector $X^M$ in $\mathbb{R}^{d+1,1}$, compared to $x^\mu$ in $\mathbb{R}^{d,1}$, and $X^M$ should have restrictions:
+\[
+(15) \quad \ldots
+\]
+\[
+(16) \quad \ldots
+\]
+
+Since (15)-(16) give two restrictions to $X^M$, roughly speaking, the space described by $X^M$ has the same dimension as $\mathbb{R}^{d,1}$, and $x^\mu$ are “embedded” in $X^M$.
+
+
 \section{Primary Operator}
 \section{Operator Product Expansion}
-Consider two operators insertion $\cO_i(x)\cO_j(0)$ inside a spacetime ball $B$ and the path integral over the interior of $B$ gives a state defined on the boundary $\partial B$.  Because every state on the boundary $\partial B$ can be written as a linear combination of primaries and descendants, the state can be decomposed as
+
+Two operator products $\cO_i(x)\cO_j(0)$ can be covered inside a spacetime ball $B$ that can separate them from other operator insertions. Every state on the boundary $\partial B$ can be decomposed as a linear combination of primaries and descendants, then
 \be
 \label{eq:opeinitial}
-\cO_i(x)\cO_j(0)|0\> &=& \sum_{k}C_{ijk}(x,P)\cO_k(0) |0\>,
+\cO_i(x)\cO_j(0)|0\> &=& \sum_{k}C_{ijk}(x,\hat{P})\cO_k(0) |0\>,
 \ee
-where $k$ runs over primary operators and $C_{ijk}(x,P)$ is an operator that packages together primaries and descendants in the $k$-th conformal multiplet (figure~\ref{fig:ope}), which becomes a coefficient depending on primary operators as the position is taken to be closed to origin $x\rightarrow 0$.
+where $k$ runs over primary operators and $C_{ijk}(x, \hat{P})$ is an operator, which becomes a coefficient depending on primary operators as the position is taken to be closed to origin $x\rightarrow 0$.
 
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
 \includegraphics[width=0.6\textwidth]{ope.jpg}
 \end{center}
@@ -114,45 +186,79 @@ where $k$ runs over primary operators and $C_{ijk}(x,P)$ is an operator that pac
 \label{fig:ope}}
 \end{figure}
 
-Using the state-operator correspondence and promoting the momentum operator $P\rightarrow\partial$
+Using the state-operator correspondence and promoting the momentum operator $\hat{P}\rightarrow\partial$
 \be
 \label{eq:opeinitial2}
 \cO_i(x_1)\cO_j(x_2) &=& \sum_{k}C_{ijk}(x_{12},\ptl_2)\cO_k(x_2),\qquad\textrm{(OPE)}
 \ee
-where it is understood that (\ref{eq:opeinitial2}) is valid inside any correlation function where the other operator insertion $\cO_n(x_n)$ far away from them, $|x_{2n}|\geq |x_{12}|$.  Eq.~(\ref{eq:opeinitial2}) is called the Operator Product Expansion (OPE). Operator product expansion can be thought as an analog to Taylor expansion in calculus, and extract the divergence of infinite fluctuation due to small separation into coefficients, with the remaining part represented by a single operator.
+where it is understood that (\ref{eq:opeinitial2}) is valid inside any n-point correlation function where the other operator insertions $\cO_n(x_n)$ far away from them, $|x_{2n}| \geq |x_{12}|$. Eq.~(\ref{eq:opeinitial2}) is called the Operator Product Expansion (OPE). Operator product expansion can be thought of as an analog to Taylor expansion in calculus, and extract the divergence of infinite fluctuation due to small separation into coefficients, with the remaining part represented by a single operator.
 
-We could alternatively perform radial quantization around a different point $x_3$, giving
+We could alternatively perform an expansion around a different point $x_3$ that a sphere centered at $x_3$ encloses $x_1$ and $x_2$, giving
 \be
 \label{eq:opealternative}
 \cO_i(x_1)\cO_j(x_2) &=& \sum_k C'_{ijk}(x_{13},x_{23},\ptl_3)\cO_k(x_3),
 \ee
-where $C'_{ijk}(x_{13},x_{23},\ptl_3)$ is some other differential operator (figure~\ref{fig:radialquantotherpoint}).  The form  (\ref{eq:opeinitial2}) is usually more convenient for computations, but the existence of (\ref{eq:opealternative}) is important. It shows that we can do the OPE between two operators whenever it's possible to draw any sphere that separates the two operators from all the other operator insertion in path integral.
+where $C'_{ijk}(x_{13},x_{23},\ptl_3)$ is some other differential operator (figure~\ref{fig:radialquantotherpoint}). (\ref{eq:opealternative}) shows that we can do the OPE whenever it's possible to draw any sphere that separates the two operators from all the other operator insertions in spacetime.
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=0.6\textwidth]{radialquantotherpoint.jpg}
 \end{center}
-\caption{OPE doesn't have to centered at origin, and the expansion basis is located at some spacetime point as the  dependence 
+\caption{OPE doesn't have to be centered at the origin, and the expansion basis is located at some spacetime point as the dependence 
  of the other operator's position is absorbed by the coefficients. \label{fig:radialquantotherpoint}}
 \end{figure}
 
-It's possible for all the operators to have spin indices.  In this case, the OPE then becomes
+If the primaries carry spins, the OPE then becomes
 \be
 \cO_i^a(x_1)\cO_j^b(x_2) &=& \sum_k C_{ijk}^{ab}{}_c(x_{12},\ptl_2)\cO_k^c(x_2),
 \ee
 where $a,b,c$ are indices for (possibly different) representations of $\SO(d)$.
 
-By acting on both sides of (\ref{eq:opeinitial}) with $D$, one can prove that $C_{ijk}(x,\ptl)$ has an expansion of the form
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+By acting on both sides of (\ref{eq:opeinitial}) with $D$,
+\[
+\begin{split}
+\text{RHS} = 
+\left(D\cO_i(x)\right)\cO_j(0)|0\> - \left(\cO_i(x)D\right)\cO_j(0)|0\> + \cO_i(x)\left(D\cO_j(0)\right)|0\>
+\\
+-\cO_i(x)\left(\cO_j(0)D\right)|0\> + \cO_i(x)\cO_j(0)|0\>
+\\
+= \left[D,e^{iP\cdot x}\cO_{i}(0)\right]\cO_j(0)|0\>+\Delta_{j}\cO_i(x)\cO_j(0)|0\> + \cO_i(x)\cO_j(0)|0\>
+\end{split}
+\]
+
+\[
+\begin{split}
+\text{LHS} = 
+\sum_{k}DC_{ijk}(x,\hat{P})\cO_{k}(0)|0\> - \sum_{k}C_{ijk}(x,\hat{P})D\cO_{k}(0)|0\>
+\\
++ \sum_{k}C_{ijk}(x,\hat{P})D\cO_{k}(0)|0\>
+\\
+= \sum_{k}\left[D,C_{ijk}(x,\hat{P})\right]\cO_{k}(0)|0\> + \sum_{k}\Delta_{k}C_{ijk}(x,\hat{P})\cO_{k}(0)|0\>+\cO_{i}(x)\cO_{j}(0)|0\>
+\end{split}
+\]
+Then we have a differential equation of coefficient,
+\be
+\label{eq:differentialcoefficient}
+\begin{split}
+\left[D,C_{ijk}(x,\hat{P})\right] = 
+\\
+(\Delta_i+\Delta_j-\Delta_k)C_{ijk}(x,\hat{P}) + x^{\mu}\cdot\ptl_{\mu} C_{ijk}(x,\hat{P})
+\end{split}
+\ee
+The solution is given by
 \be
 \label{eq:opeexpansionexample}
-C_{ijk}(x,\ptl) &\propto& |x|^{\De_k-\De_i-\De_j}\p{1 +\# x^\mu\ptl_\mu + \# x^\mu x^\nu\ptl_\mu\ptl_\nu+\# x^2 \ptl^2 + \dots}\nn\\
+C_{ijk}(x,\ptl) &\propto& |x|^{\De_k-\De_i-\De_j}\p{1 +\# x^\mu\ptl_\mu + \# (x\cdot\ptl)^2+\# x^2 \ptl^2 + \dots}\nn\\
 \ee
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+
 \subsection{Consistency with Conformal Invariance}
 % \begin{exercise}
 % \end{exercise}
 By conformal invariance, such as dimensional analysis, rotational invariance, and non-trivially, the special conformal transform $K_{\mu}$, the form of the coefficient in OPE is strongly restricted.
 
-We get a more interesting constraint by acting with $K_\mu$, for simplicity, suppose $\cO_i$, $\cO_j$, and $\cO_k$ are scalars. In fact, consistency with $K_\mu$ completely fixes $C_{ijk}$ up to an overall coefficient. In this way, we can determine the coefficients in (\ref{eq:opeexpansionexample}).
+We get a more interesting constraint by acting with $K_\mu$, for simplicity, suppose $\cO_i$, $\cO_j$, and $\cO_k$ are scalars. Consistency with $K_\mu$ completely fixes $C_{ijk}$ up to an overall coefficient. This way, we can determine the coefficients in (\ref{eq:opeexpansionexample}).
 
 Why the form of the OPE is fixed? To get the coefficients in (\ref{eq:opeexpansionexample}), take the correlation function of both sides of (\ref{eq:opeinitial2}) with a third operator $\cO_k(x_3)$ (we will assume $|x_{23}|\geq |x_{12}|$, so that the OPE of $O_i\text{ and }O_j$ is valid),
 \be
@@ -165,10 +271,11 @@ The three-point function on the left-hand side is fixed by conformal invariance,
 \label{eq:matchingthreept}
 \frac{f_{ijk}}{x_{12}^{\De_i+\De_j-\De_k}x_{23}^{\De_j+\De_k-\De_i}x_{31}^{\De_k+\De_i-\De_j}} &=& C_{ijk}(x_{12},\ptl_2)x_{23}^{-2\De_k}.
 \ee
-This determines $C_{ijk}$ to be proportional to $f_{ijk}$, times a differential operator that depends only on the $\De_i$'s. The coefficient operator can be obtained by matching both sides of (\ref{eq:matchingthreept}) in small expansion $|x_{12}|/|x_{23}|$.
+This determines that $C_{ijk}$ is proportional to $f_{ijk}$, times a differential operator that depends only on $\De_i$' s. The coefficient operator can be obtained by matching both sides of (\ref{eq:matchingthreept}) in small expansion $|x_{12}|/|x_{23}|$.
 % \begin{exercise}
 % \label{exercise:seriesfordiffops}
 
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 Consider the special case $\De_i=\De_j=\De_\f$, and $\De_k=\De$.  Show
 \be
 \label{eq:identicalscalaropeoperator}
@@ -179,11 +286,13 @@ where
 \label{eq:opedescendantcoefficients}
 \a &=& \frac{\De+2}{8(\De+1)},\quad\textrm{and}\quad \b=-\frac{\De}{16(\De-\frac{d-2}{2})(\De+1)}.
 \ee
+
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 % \end{exercise}
 
 \subsection{Correlation Function with OPE}
 
-Equation (\ref{eq:threetotwo}) gives an example of using the OPE to reduce a three-point function to a sum of two-point functions.  In general, we can use the OPE to reduce any $n$-point function to a sum of $n-1$-point functions by assumption of locality,
+Equation (\ref{eq:threetotwo}) gives an example of using the OPE to reduce a three-point function to a sum of two-point functions.  In general, we can use the OPE to reduce any $n$-point function to a sum of $n-1$-point functions by the assumption of locality,
 \be
 \<\cO_1(x_1)\cO_2(x_2)\cdots\cO_n(x_n)\> &=& \sum_k C_{12k}(x_{12},\ptl_2)\<\cO_k(x_2)\cdots\cO_n(x_n)\>.\nn\\
 \ee
@@ -207,7 +316,7 @@ We can use the OPE to compute a four-point correlation function of identical sca
 \ee
 where the cross-ratios $u$, $v$ are given previous section.
 
-On the other hand, the OPE of two scalar field takes the form
+On the other hand, the OPE of two scalar fields takes the form
 \be
 \label{eq:scalarscalarOPE}
 \f(x_1)\f(x_2) &=& \sum_\cO f_{\f\f\cO} C_{a}(x_{12},\ptl_2)\cO^{a}(x_2),
@@ -240,7 +349,7 @@ We can pair up the operator (12) (34) by assuming their relative positions are s
 = \frac{1}{x_{12}^{\De_\f} x_{34}^{\De_\f}}\sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(x_i),
 \end{multline}
 
-In the second line, we use the fact that the correlation function vanishes unless the operators have same eigenvalue, and 
+In the second line, we use the fact that the correlation function vanishes unless the operators have the same eigenvalue, and 
 \be
 \label{eq:olddefinitionofg}
 g_{\De,\ell}(x_i) &\equiv& x_{12}^{\De_\f} x_{34}^{\De_\f} C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\frac{I^{ab}(x_{24})}{x_{24}^{2\De}}.
@@ -258,7 +367,7 @@ g(u,v) &=& \sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(u,v).
 \ee
 % \begin{exercise}
 \noindent\rule[0.5ex]{\linewidth}{1pt}
-Using the differential operator (\ref{eq:identicalscalaropeoperator}), show
+Using the differential operator (\ref{eq:identicalscalaropeoperator}) and (\ref{eq:olddefinitionofg}), show
 \be
 \label{eq:boundaryconditionforblock}
 g_{\De,0}(u,v) &=& u^{\De/2}\p{1+\dots}.
@@ -318,7 +427,7 @@ Each term in the sum is a conformal block times a squared OPE coefficient and so
 
 % \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-This expression makes it clear why $g_{\De,\ell}$ is a function of cross ratio $u$ and $v$: \textit{the projector $|\cO|$ commutes with all conformal generators (by construction);therefore, (\ref{eq:newdefinitionofg}) above satisfies all the same Ward identities as a four-point function of primaries, and it must take the form of four-point correlation function}. In path integral language, $|\cO|$ can be thought of as a surface operator, and we insert it on a sphere separating $x_{1,2}$ from $x_{3,4}$.
+This expression makes it clear why $g_{\De,\ell}$ is a function of cross-ratio $u$ and $v$: \textit{the projector $|\cO|$ commutes with all conformal generators (by construction); therefore, (\ref{eq:newdefinitionofg}) above satisfies all the same Ward identities as a four-point function of primaries, and it must take the form of four-point correlation function}. In path integral language, $|\cO|$ can be thought of as a surface operator, and we insert it on a sphere separating $x_{1,2}$ from $x_{3,4}$.
 
 \subsection{Methods of Conformal Casimir}
 
@@ -365,6 +474,23 @@ We then have
 \end{align}
 Plugging in (\ref{eq:newdefinitionofg}), we find that $g_{\De,\ell}$ satisfies the differential equation 
 \be
+\label{eq:conformalcasimir1}
+\cD_{1,2} \frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO,\ell_\cO}(u,v) &=& \lambda_{\Delta_\cO,\ell_\cO} \frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO,\ell_\cO}(u,v)
+\ee
+One way to compute the differential operator on an arbitrary function of cross-ratio is to use the embedding formalism mentioned in the previous section, we've defined $X^{M}$ to generalize the form of a conformal generator, which can be written as a $SO(N)$ operator:
+\be
+\label{eq:conformalgeneratorinembeddingformalism}
+L_{AB} = X_A\frac{\ptl }{\ptl X^{B}} - X_{B}\frac{\ptl }{\ptl X^A}
+\ee
+In this formalism, the cross-ratio becomes 
+\be
+\label{eq:crossratio}
+\begin{split}
+    u\\
+    v
+\end{split}
+\ee
+\be
 \label{eq:conformalcasimir}
 \cD g_{\De,\ell}(u,v) &=& \l_{\De,\ell} g_{\De,\ell}(u,v),
 \ee
@@ -390,8 +516,8 @@ The block can also be solved by other methods like recursion relations.
 \subsection{Series Expansion of Conformal Blocks}
 
 It will be helpful to understand the series expansion of the conformal blocks in more detail.
- The ``radial coordinates" of \cite{Pappadopulo:2012jk,Hogervorst:2013sma} are ideal for this purpose.
- Using conformal transformations, we can place all four operators on a plane in the configuration shown in figure~\ref{fig:rho}.  This makes it clear that the conformal block expansion is valid whenever $|\rho|<1$.
+ The ``radial coordinates" of \cite{Pappadopulo:2012jk, Hogervorst:2013sma} are ideal for this purpose.
+ Using conformal transformations, we can place all four operators on a plane in the configuration shown in figure~\ref{fig: rho}.  This makes it clear that the conformal block expansion is valid whenever $|\rho|<1$.
 
 \begin{figure}
 \begin{center}
@@ -461,10 +587,11 @@ Notice a few properties:
 \begin{itemize}
 \item The leading term in the $r$-expansion comes from the primary state $|\cO\>$ with $n=0$ and $j=\ell$. This can be used as a boundary condition in the Casimir equation to determine the higher coefficients $B_{n,j}$.
 \item The $B_{n,j}$ are positive in a unitary theory because they are given by norms of projections of $|\psi\>$ onto energy and spin eigenstates.
-\item The $B_{n,j}$ are rational functions of $\De$.  This follows because the Casimir eigenvalue $\l_{\De,\ell}$ is polynomial in $\De$, or alternatively from the fact that the differential operators $C_a(x,\ptl)$ appearing in the OPE (\ref{eq:scalarscalarOPE}) have a series expansion in $x$ with rational coefficients, see exercise~\ref{exercise:seriesfordiffops}. 
+\item The $B_{n,j}$ are rational functions of $\De$.  This follows because the Casimir eigenvalue $\l_{\De,\ell}$ is polynomial in $\De$, or from the fact that the differential operators $C_a(x,\ptl)$ appearing in the OPE (\ref{eq:scalarscalarOPE}) have a series expansion in $x$ with rational coefficients, see exercise~\ref{exercise:seriesfordiffops}. 
 \end{itemize}
 
 % \begin{exercise}
+\noindent\rule[0.5ex]{\linewidth}{1pt}
 Expand $g^{(2d)}_{\De,\ell}(u,v)$ and $g^{(4d)}_{\De,\ell}(u,v)$ to the first few orders in $r$, and check these properties.  Verify that some of the coefficients $B_{n,j}$ become negative when $\De$ violates the unitarity bound.
 % \end{exercise}
 
@@ -475,6 +602,8 @@ By rewriting in terms of $r,\th$ and using (\ref{eq:seriesexpansion}), show that
 g_{\De,\ell}(u,v) &=& g_{\De,\ell}\p{\frac{u}{v},\frac 1 v},\qquad(\textrm{$\ell$ even}).
 \ee
 % \end{exercise}
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+
 
 \section{Conformal Bootstrap}
 \subsection{Crossing Symmetry}
@@ -485,7 +614,7 @@ g_{\De,\ell}(u,v) &=& g_{\De,\ell}\p{\frac{u}{v},\frac 1 v},\qquad(\textrm{$\ell
 This section encompasses the first three chapters of Simmons-Duffin's TASI lecture notes \cite{simmonsduffin2016tasilecturesconformalbootstrap}, where we provide a brief overview of the bootstrapping philosophy, along with the foundational language and conventions used in this field.
 
 \subsection{Bootstrap Philosophy}
-Critical universality of many microscopic theories allows us to focus on the CFT.
+The critical universality of many microscopic theories allows us to focus on the CFT.
 
 \subsection{Path Integral Quantization}
 Path integral formalism chooses a specific time direction, and spacetime is divided into successive slices. Each slice is associated with a Hilbert space of states in the Heisenberg picture, and the progression from one slice to the next is governed by time evolution. The general correlator is defined as follows:
@@ -539,7 +668,7 @@ This is the familiar commutation relation for the momentum operator in quantum m
 \begin{equation}
     \left[\hat{P}^{\mu}, \hat{\mathcal{O}}(x)\right] = \partial^{\mu}\hat{\mathcal{O}}(x)
 \end{equation}
-At first glance, the L.H.S of Eq(1.7) appears to be non-local because the topological momentum operator is expressed as a surface integral over a finite spacetime volume. However, by progressively deforming the boundary \( \Sigma \) to increasingly concentrate around the enclosed singularity, we reveal the locality of the transformation, as shown on the R.H.S of Eq(1.7).
+At first glance, the L.H.S of Eq(1.7) appears to be non-local because the topological momentum operator is expressed as a surface integral over a finite spacetime volume. However, by progressively deforming the boundary \( \Sigma \) to concentrate around the enclosed singularity increasingly, we reveal the locality of the transformation, as shown on the R.H.S of Eq(1.7).
 \subsection{Conformal Algebra}
 Next, we can consider more symmetries, especially symmetries of general coordinate transform, infinitesimally,
 \begin{equation}
