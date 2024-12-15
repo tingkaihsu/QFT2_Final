@@ -2,6 +2,7 @@
 \usepackage{braket}
 \usepackage{physics}
 \usepackage{simplewick}
+\usepackage{relsize}
 \usepackage{graphicx}
 \usepackage{times}
 \usepackage[export]{adjustbox}
@@ -94,11 +95,160 @@ tabsize=3
 \begin{abstract}
     
 \end{abstract}
-\section{Introduction}
-\section{Quantization and Topological Surface Operator}
+\section{Introduction to Conformal Bootstrap and Its Language}
+
+This section encompasses the first three chapters of Simmons-Duffin's TASI lecture notes \cite{simmonsduffin2016tasilecturesconformalbootstrap}, where we provide a brief overview of the bootstrapping philosophy, along with the foundational language and conventions used in this field.
+
+\subsection{Bootstrap Philosophy}
+The critical universality of many microscopic theories allows us to focus on the CFT.
+
+\subsection{Path Integral Quantization}
+Path integral formalism chooses a specific time direction, and spacetime is divided into successive slices. Each slice is associated with a Hilbert space of states in the Heisenberg picture, and the progression from one slice to the next is governed by time evolution. The general correlator is defined as follows:
+
+\begin{equation}
+    \langle\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle = \bra{0}\text{T}\left\{\hat{\mathcal{O}_1}(t_1,\mathbf{x}_1)\cdots\hat{\mathcal{O}_n}(t_n,\mathbf{x}_n)\right\}\ket{0}
+\end{equation}
+
+Here, note that the L.H.S represents a product of spacetime functions. At the same time, the R.H.S. is a product of operators in the Heisenberg picture, defined in distinct Hilbert spaces corresponding to each slice. This is the familiar form of the correlator within the path integral framework.
+
+\subsection{Stress Energy and Topological Surface Operator}
+Consider a quantum field theory (QFT) coupled to a background metric $g$,  with correlators defined within the path integral formalism in Euclidean signature. 
+\begin{equation}
+    \bra{0}\text{T}\left\{\hat{\mathcal{O}_1}(t_1,\mathbf{x}_1)\cdots\hat{\mathcal{O}_n}(t_n,\mathbf{x}_n)\right\}\ket{0}_{g} = \int{\prod_{y}d\phi(y)\,\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)e^{-S[g,\phi]}}
+\end{equation}
+The stress-energy tensor is the conserved current associated with the diffeomorphism invariance of the action $S[g,\phi]$ in the flat spacetime limit $g\rightarrow\eta$.
+% \begin{equation}
+%     \langle T^{\mu\nu}(x)\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle_g = \frac{2}{\sqrt{|g(x)|}}\frac{\delta}{\delta g_{\mu\nu}(x)}\langle\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle_{g}
+% \end{equation}
+% Around the flat spacetime limit, we derive the familiar Ward-Takahashi identity\footnote{See appendix.}:
+Consequently, we obtain the familiar Ward-Takahashi identity:
+\begin{equation}
+    \partial_{\mu}\langle T^{\mu\nu}(x)\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle = -\sum_{i}\delta^4(x-x_i)\partial^{\nu}_{i}\langle\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle
+\end{equation}
+
+Define \textbf{topological surface operator}:
+\begin{equation}
+    P^{\nu}(\Sigma)\equiv-\int_{\Sigma}{dS_{\mu}}T^{\mu\nu}(x)
+\end{equation}
+The integral is taken over a closed hypersurface within the spacetime manifold, which can be considered the boundary of a ball $B$. The presence of delta functions in the Ward-Takahashi identity allows for the deformation of this closed hypersurface, provided that the deformation does not intersect additional spacetime points. Let's consider a ball $B$ that encloses a spacetime point $x$ where an operator $\mathcal{O}(x)$ insertion occurs. In this case, the volume integral over the ball transforms into a surface integral over the boundary of $B$ on the L.H.S:
+\begin{equation}
+\begin{split}
+    \langle P^{\nu}(\Sigma)\mathcal{O}(x)\cdots\rangle = \int_{B}{d^4y\delta^4(y-x)}\partial^{\nu}_{x}\langle\mathcal{O}(x)\cdots\rangle\\
+    =\partial^{\nu}\langle\mathcal{O}(x)\cdots\rangle
+\end{split}
+\end{equation}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{surroundoperator.jpg} % Placeholder for Fig.1
+\caption{\label{surroundoperator}Illustration of the topological operator loop.}
+\end{figure}
+
+\indent As long as no additional spacetime points with operator insertions are crossed, the surface \( \Sigma \) can be freely deformed from one slice to another, maintaining the invariance of \( P^{\mu}(\Sigma) \). This invariance implies that the momentum \( P^{\mu}(\Sigma) \) is topological in the path integral formulation, which in turn indicates that it is conserved.
+Now, consider two spatial slices at times \( t_1 \) and \( t_2 \) within the spacetime manifold, with \( t_1 < t_2 \). Suppose there is an operator insertion \( \mathcal{O}(t, \mathbf{x}) \) at a time \( t \) such that \( t_1 < t < t_2 \). If we "sandwich" this operator between the slices at \( t_1 \) and \( t_2 \), then:
+
+\begin{equation}
+    \lim_{t_1\rightarrow t_2^{-}}\langle P^{\mu}(\Sigma_2)\mathcal{O}(x)\cdots\rangle-\langle P^{\mu}(\Sigma_1)\mathcal{O}(x)\cdots\rangle = \bra{0}\text{T}\left\{\left[\hat{P}^\mu,\hat{\mathcal{O}}(x)\right]\cdots\right\}\ket{0}
+\end{equation}
+The appearance of the commutator on the R.H.S arises due to the time ordering in the correlation function. Since the momentum \( P^{\mu}(\Sigma) \) is topological, we can deform \( \Sigma_2 - \Sigma_1 \) to a sphere \( S \) that encloses the local point \( x \):
+\[
+    \lim_{t_1\rightarrow t_2^{-}}\langle P^{\mu}(\Sigma_2)\mathcal{O}(x)\cdots\rangle-\langle P^{\mu}(\Sigma_1)\mathcal{O}(x)\cdots\rangle = \langle P^{\mu}(S)\mathcal{O}(x)\cdots\rangle 
+\]
+\[
+    =\partial_{x}^{\mu}\langle\mathcal{O}(x)\cdots\rangle
+\]
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{slidingcharges.jpg} % Placeholder for Fig.2
+\caption{\label{fig:slidingcharges} Illustration of the shrinking region in path integrals.}
+\end{figure}
+This is the familiar commutation relation for the momentum operator in quantum mechanics:
+\begin{equation}
+    \left[\hat{P}^{\mu}, \hat{\mathcal{O}}(x)\right] = \partial^{\mu}\hat{\mathcal{O}}(x)
+\end{equation}
+At first glance, the L.H.S of Eq(1.7) appears non-local because the topological momentum operator is expressed as a surface integral over a finite spacetime volume. However, by progressively deforming the boundary \( \Sigma \) to increasingly concentrate around the enclosed singularity, we reveal the locality of the transformation, as shown on the R.H.S of Eq(1.7).
+\subsection{Conformal Symmetry}
+Next, we can consider more symmetries, especially symmetries of general coordinate transform, infinitesimally,
+\begin{equation}
+    x^{\mu}\rightarrow x'^{\mu} = x^{\mu} + \epsilon^{\nu}(x)
+\end{equation}
+the corresponding conserved charge\footnote{One might argue why local symmetry can have a conserved charge, however, here we should view them as a special case.} as an infinitesimal transformation generator:
+\begin{equation}
+    Q_{\epsilon}(\Sigma) = -\int_{\Sigma}{dS_{\mu}\,}\epsilon_{\nu}(x)T^{\mu\nu}(x)
+\end{equation}
+Stress energy $T^{\mu\nu}(x)$ is assumed to be conserved, symmetry, and \textit{traceless}\footnote{Tracelessness of stress energy is related to conformal symmetry, as we're about to show.}, then the conservation of $Q$ implies:
+\[
+    \partial_{\mu}(\epsilon_{\nu}T^{\mu\nu}(x)) = 0
+\]
+\[
+    =\frac{1}{2}\left(\partial_{\mu}\epsilon_{\nu}(x)+\partial_{\nu}\epsilon_{\mu}(x)\right)\cdot T^{\mu\nu}(x)
+\]
+Then, traceless $T^{\mu\nu}(x)$ leads to conformal Killing equation:
+\begin{equation}
+    \partial_{\mu}\epsilon_{\nu}(x) + \partial_{\nu}\epsilon_{\mu}(x) = \eta_{\mu\nu}c(x)
+\end{equation}
+Constant spacetime translation satisfies the equation and the corresponding conserved charge $Q_{\epsilon}$ is momentum, and we'll discuss more symmetries that are solutions to the conformal Killing equation in the appendix. In terms of $\epsilon(x)$, $c(x) = 2/d\,\partial\cdot\epsilon(x)$. To see how metric transforms, first consider,
+\[
+    \frac{\partial x'^{\mu}}{\partial x^{\nu}} = \delta^{\mu}_{\nu} + \partial_{\nu}\epsilon^{\mu}(x)
+\]
+\begin{equation}
+    \approx \left(1+\frac{c(x)}{2}\right)\left(\delta^{\mu}_{\nu} + \frac{1}{2}(\partial_{\nu}\epsilon^{\mu}-\partial^{\mu}\epsilon_{\nu})\right)
+\end{equation}
+where we've used conformal Killing equation and ignore $\mathcal{O}(\epsilon^2)$ terms. The R.H.S of Eq(1.11) is an infinitesimal rescaling times an infinitesimal rotation. Equivalently, the transformation $x\rightarrow x'$ governed by the conformal Killing equation and stress energy rescales the metric by a scalar factor. Such transformations are called \textit{conformal}\footnote{By conformal, we mean the angles between two curves' intersections are invariant under the transformations, as can be seen from the transformation of metric.}.
+% \subsection{More on Topological Surface Operator}
+First, let’s build our language about operators and states through the path integral and prepare some materials needed later. From our course, we’ve learned that
+\begin{equation}
+\label{eq1}
+\ldots
+\end{equation}
+
+If we contact $O$ with other operators, then we get
+\begin{equation}
+\label{eq2}
+\ldots
+\end{equation}
+
+We could use the path integral to prove \eqref{eq2}, which will be left in the appendix.
+
+Then, consider the integral of $J$ over a closed surface:
+\begin{equation}
+\label{eq3}
+\ldots
+\end{equation}
+
+From \eqref{eq2} and the divergence theorem, we can find a correlator of $J$ is only related to what operators appear in its loop, instead of the path itself (shown in Fig.~1). $J$ is called the “topological (codimension-1) operator.” If we act $J$ onto other operators, it is equivalent to taking the derivative, as:
+\begin{equation}
+\label{eq4}
+\ldots
+\end{equation}
+
+In this language, the topological codimension-1 operator is the same as having a symmetry.
+
+Also, from our course last semester, we’ve known the correlation function could be written as:
+\begin{equation}
+\label{eq5}
+\ldots
+\end{equation}
+
+Then, we can do two different path integrals $Z$ concerning $J$. The integral should be time-ordered, so by subtracting each other, it will shrink into a region surrounding (shown in Fig.~2). Then by \eqref{eq4}, we could get its commutation relation:
+\begin{equation}
+\label{eq6}
+\ldots
+\end{equation}
+
+
+
+Integrating \eqref{eq6} over $J$, we will get:
+\begin{equation}
+\label{eq7}
+\ldots
+\end{equation}
+which shows how we represent the operator away from the origin with the one at the origin.
 \section{Conformal Algebra}
 
 The conformal symmetry of spacetime is expressed by an extension of the Poincaré group, known as the conformal group. Conformal symmetry encompasses special conformal transformations and dilations and has 15 degrees of freedom in $3+1$ dimensions.
+
+
 
 The Lie algebra of the conformal group has the following representation:
 \be
@@ -113,21 +263,37 @@ P_{\mu}\equiv \ptl_{\mu}
 \label{eq:dilatation}
 D\equiv x_{\mu}\partial_{\mu}
 \ee
-
 \be
 \label{eq:specialconformaltransformation}
 K_{\mu} = 2x_{\mu}(x^{\nu}\ptl_{\nu})-x^2\ptl_{\mu}
 \ee
 
-Where $J_{\mu\nu}$ are the Lorentz generators, $P_\mu$ generates translations, which are also the generators in the Poincaré group. Also, $D$ generates scaling transformations (also known as dilatations or dilations) and $K_\mu$ generates the special conformal transformations. It can be shown that these generators can be determined by the traceless stress tensor $T^{\mu\nu}$. For simplicity, let’s leave this part to the appendix.
+Where $M_{\mu\nu}$ are the Lorentz generators, $P_\mu$ generates translations, which are also the generators in the Poincaré group. Also, $D$ generates scaling transformations (also known as dilatations or dilations) and $K_\mu$ generates the special conformal transformations. It can be shown that these generators can be determined by the traceless stress tensor $T^{\mu\nu}$. A more rigorous discussion about conformal symmetry, conformal transformation, and how to solve its killing equations will be left in the appendix.
 
-From the definition of generators (1)-(4), we can then derive their commutation relations, as (5)-(10):
-\[
-(5) \quad \ldots
-\]
-\[
-(6) \quad \ldots
-\]
+From the definition of generators (\ref{eq:angularmomentum})-(\ref{eq:specialconformaltransformation}), we can then derive their commutation relations, as (\ref{eq:angularmomentummomentumcmr})-(10), and all other commutators are zero.
+
+\be
+\label{eq:angularmomentummomentumcmr}
+\begin{split}
+[M_{\mu\nu}, P_\rho] &= [(x_\mu \partial_\nu - x_\nu \partial_\mu), \partial_\rho] \\
+&= [x_\mu \partial_\nu, \partial_\rho] - [x_\nu \partial_\mu, \partial_\rho] 
+\\
+&= -\delta_\rho^\mu P_\nu + \delta_\rho^\nu P_\mu.
+\end{split}
+\ee
+
+\be
+\label{eq:angmomSCTcmr}
+\begin{split}
+[M_{\mu\nu}, K_\rho] &= [(x_\mu \partial_\nu - x_\nu \partial_\mu), 2x_\rho (x^\sigma \partial_\sigma) - x^2 \partial_\rho] \\
+&= 2\big(x_\mu \delta_{\nu\rho} x^\sigma \partial_\sigma - x_\nu \delta_{\mu\rho} x^\sigma \partial_\sigma\big) 
++ \big(x^2 \delta_{\rho\mu} \partial_\nu - x^2 \delta_{\rho\nu} \partial_\mu\big) \\
+&= \delta_{\nu\rho}\big(2x_\mu (x \cdot \partial) - x^2 \partial_\mu\big) 
+- \delta_{\mu\rho}\big(2x_\nu (x \cdot \partial) - x^2 \partial_\nu\big) \\
+&= \delta_{\nu\rho} K_\mu - \delta_{\mu\rho} K_\nu.
+\end{split}
+\ee
+
 \[
 (7) \quad \ldots
 \]
@@ -140,6 +306,8 @@ From the definition of generators (1)-(4), we can then derive their commutation 
 \[
 (10) \quad \ldots
 \]
+
+
 
 Note that (5)-(7) show that $P_\mu$ and $K_\mu$ transform as vectors under rotation $SO(d)$ and $J_{\mu\nu}$ generates this algebra. (8)-(10) illustrate that $P_\mu$ and $K_\mu$ are lowering and raising operators of $D$, which is similar to $SU(2)$ algebra introduced in the quantum mechanics course.
 
@@ -168,7 +336,8 @@ Therefore, it is better to treat the algebra in space $\mathbb{R}^{d+1,1}$ than 
 Since (15)-(16) give two restrictions to $X^M$, roughly speaking, the space described by $X^M$ has the same dimension as $\mathbb{R}^{d,1}$, and $x^\mu$ are “embedded” in $X^M$.
 
 
-\section{Primary Operator}
+\section{Primary Operator and Correlation Function}
+\section{Radial Quantization and Cylindrical Quantization}
 \section{Operator Product Expansion}
 
 Two operator products $\cO_i(x)\cO_j(0)$ can be covered inside a spacetime ball $B$ that can separate them from other operator insertions. Every state on the boundary $\partial B$ can be decomposed as a linear combination of primaries and descendants, then
@@ -210,7 +379,7 @@ where $C'_{ijk}(x_{13},x_{23},\ptl_3)$ is some other differential operator (figu
 
 If the primaries carry spins, the OPE then becomes
 \be
-\cO_i^a(x_1)\cO_j^b(x_2) &=& \sum_k C_{ijk}^{ab}{}_c(x_{12},\ptl_2)\cO_k^c(x_2),
+\cO_i^a(x_1)\cO_j^b(x_2) &=& \sum_k C_{ijk}^{AB}{}_c(x_{12},\ptl_2)\cO_k^c(x_2),
 \ee
 where $a,b,c$ are indices for (possibly different) representations of $\SO(d)$.
 
@@ -246,27 +415,28 @@ Then we have a differential equation of coefficient,
 (\Delta_i+\Delta_j-\Delta_k)C_{ijk}(x,\hat{P}) + x^{\mu}\cdot\ptl_{\mu} C_{ijk}(x,\hat{P})
 \end{split}
 \ee
-The solution is given by
+
+The solution is given in order by order $\cO(x\cdot \hat P)$
 \be
 \label{eq:opeexpansionexample}
-C_{ijk}(x,\ptl) &\propto& |x|^{\De_k-\De_i-\De_j}\p{1 +\# x^\mu\ptl_\mu + \# (x\cdot\ptl)^2+\# x^2 \ptl^2 + \dots}\nn\\
+C_{ijk}(x,\ptl) &\propto& |x|^{\De_k-\De_i-\De_j}\p{1 + C_1 x^\mu\ptl_\mu + C_2 (x\cdot\ptl)^2+ C_3 x^2 \ptl^2 + \dots}\nn\\
 \ee
 % \noindent\rule[0.5ex]{\linewidth}{1pt}
 
 \subsection{Consistency with Conformal Invariance}
 % \begin{exercise}
 % \end{exercise}
-By conformal invariance, such as dimensional analysis, rotational invariance, and non-trivially, the special conformal transform $K_{\mu}$, the form of the coefficient in OPE is strongly restricted.
+By conformal invariance, such as dimensional analysis, rotational invariance, and non-trivially, and the special conformal transform, the form of the coefficient in OPE is strongly restricted.
 
-We get a more interesting constraint by acting with $K_\mu$, for simplicity, suppose $\cO_i$, $\cO_j$, and $\cO_k$ are scalars. Consistency with $K_\mu$ completely fixes $C_{ijk}$ up to an overall coefficient. This way, we can determine the coefficients in (\ref{eq:opeexpansionexample}).
+We get a more interesting constraint by acting with SCT $K_\mu$, for simplicity, suppose $\cO_i$, $\cO_j$, and $\cO_k$ are scalars. Consistency with $K_\mu$ completely fixes $C_{ijk}$ up to an overall coefficient so that the coefficients of each term in (\ref{eq:opeexpansionexample}) are determined.
 
-Why the form of the OPE is fixed? To get the coefficients in (\ref{eq:opeexpansionexample}), take the correlation function of both sides of (\ref{eq:opeinitial2}) with a third operator $\cO_k(x_3)$ (we will assume $|x_{23}|\geq |x_{12}|$, so that the OPE of $O_i\text{ and }O_j$ is valid),
+Take the correlation function of both sides of (\ref{eq:opeinitial2}) with a third operator $\cO_k(x_3)$ (Assume $|x_{23}|\geq |x_{12}|$, so that the OPE of $\cO_i(x_1)\text{ and }\cO_j(x_2)$ is valid),
 \be
 \label{eq:threetotwo}
 \<\cO_i(x_1)\cO_j(x_2)\cO_k(x_3)\> &=& \sum_{k'} C_{ijk'}(x_{12},\ptl_2)\<\cO_{k'}(x_2)\cO_k(x_3)\>.
 \ee
 
-The three-point function on the left-hand side is fixed by conformal invariance, as mentioned in the previous sections. Choosing \textbf{an orthonormal basis of primary operators} for the expansion, so that $\<\cO_k(x_2)\cO_{k'}(x_3)\>= \de_{kk'}x_{23}^{-2\De_k}$.  The sum then collapses to a single term, giving
+The three-point function on the left-hand side is fixed by conformal invariance, as mentioned in the previous sections. Choosing \textbf{an orthonormal basis of primary operators} for the expansion, so that $\<\cO_{k'}(x_2)\cO_{k}(x_3)\>= \de_{kk'}x_{23}^{-2\De_k}$.  The sum then collapses to a single term, giving
 \be
 \label{eq:matchingthreept}
 \frac{f_{ijk}}{x_{12}^{\De_i+\De_j-\De_k}x_{23}^{\De_j+\De_k-\De_i}x_{31}^{\De_k+\De_i-\De_j}} &=& C_{ijk}(x_{12},\ptl_2)x_{23}^{-2\De_k}.
@@ -275,19 +445,19 @@ This determines that $C_{ijk}$ is proportional to $f_{ijk}$, times a differentia
 % \begin{exercise}
 % \label{exercise:seriesfordiffops}
 
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-Consider the special case $\De_i=\De_j=\De_\f$, and $\De_k=\De$.  Show
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+If $\De_i=\De_j=\De_\f$, and $\De_k=\De$, then (\ref{eq:opeexpansionexample}) becomes
 \be
 \label{eq:identicalscalaropeoperator}
-C_{ijk}(x,\ptl) &=& f_{ijk} x^{\De-2\De_\f}\p{1+\frac 1 2 x\.\ptl + \a x^\mu x^\nu\ptl_\mu\ptl_\nu + \b x^2 \ptl^2+\dots},\nn\\
+C_{ijk}(x,\ptl) &=& f_{ijk} x^{\De-2\De_\f}\p{1+\frac 1 2 x\.\ptl + \a x^\mu x^\nu\ptl_\mu\ptl_\nu + \b x^2 \ptl^2+\cdots}\nn\\
 \ee
-where
-\be
-\label{eq:opedescendantcoefficients}
-\a &=& \frac{\De+2}{8(\De+1)},\quad\textrm{and}\quad \b=-\frac{\De}{16(\De-\frac{d-2}{2})(\De+1)}.
-\ee
+% where
+% \be
+% \label{eq:opedescendantcoefficients}
+% \a &=& \frac{\De+2}{8(\De+1)},\quad\textrm{and}\quad \b=-\frac{\De}{16(\De-\frac{d-2}{2})(\De+1)}.
+% \ee
 
-\noindent\rule[0.5ex]{\linewidth}{1pt}
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
 % \end{exercise}
 
 \subsection{Correlation Function with OPE}
@@ -303,7 +473,7 @@ Recursing, we can reduce everything to a sum of one-point functions, which are f
 0 & \textrm{otherwise.}
 \end{cases}
 \ee
-This gives an algorithm for computing any flat-space correlation function using the OPE\@.  It shows that all these correlation functions are determined by dimensions $\De_i$, spins, and three-point correlation function coefficients $f_{ijk}$.
+This gives an algorithm for computing any flat-space correlation function using the OPE\@.  It shows that all these correlation functions are determined by dimensions $\De_i$ and three-point correlation function coefficients $f_{ijk}$.
 % \footnote{The OPE is also valid on any conformally flat manifold.  The difference is that on nontrivial manifolds, non-unit operators can have nonzero one-point functions.  An example is $\R^{d-1}\x S^1_\b$, which has the interpretation as a CFT at finite temperature.  By dimensional analysis, we have $\<\cO\>_{\R^{d-1}\x S^1_\b}\propto \b^{-\De_\cO}\propto T^{\De_\cO}$.\label{foot:finitetemperature}}
 
 \section{Conformal Blocks}
@@ -312,16 +482,16 @@ This gives an algorithm for computing any flat-space correlation function using 
 
 We can use the OPE to compute a four-point correlation function of identical scalars. Recall that conformal invariance fixes the function up to some arbitrary function that is conformal-invariant
 \be
-\<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \frac{g(u, v)}{x_{12}^{\De_\f}x_{34}^{\De_\f}},
+\<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \frac{g(u, v)}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}},
 \ee
 where the cross-ratios $u$, $v$ are given previous section.
 
 On the other hand, the OPE of two scalar fields takes the form
 \be
 \label{eq:scalarscalarOPE}
-\f(x_1)\f(x_2) &=& \sum_\cO f_{\f\f\cO} C_{a}(x_{12},\ptl_2)\cO^{a}(x_2),
+\f(x_1)\f(x_2) &=& \sum_\cO f_{\f\f\cO} C(x_{12},\ptl_2)\cO(x_2),
 \ee
-where $\cO^{a}$ can have nonzero spin in general. 
+% where $\cO^{a}$ can have nonzero spin in general. 
 % For $\cO^a$ to appear in the OPE of two scalars, it must transform in a spin-$\ell$ traceless symmetric tensor representation of $\SO(d)$.
 % \begin{exercise}
 
@@ -329,12 +499,13 @@ where $\cO^{a}$ can have nonzero spin in general.
 % \end{exercise}
 % \begin{exercise}
 
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-\label{exercise:elleven}
-The three-point correlation function shows that $f_{\f\f\cO}$ vanishes unless $\ell$ is even.
-% \end{exercise}
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+% \label{exercise:elleven}
+% The three-point correlation function shows that $f_{\f\f\cO}$ vanishes unless $\ell$ is even.
+% % \end{exercise}
 
-\noindent\rule[0.5ex]{\linewidth}{1pt}
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+where we have extracted the factor $f_{ijk}$ from (\ref{eq:identicalscalaropeoperator}) to define $C(x,\ptl)$.
 
 We can pair up the operator (12) (34) by assuming their relative positions are separated well to avoid operator insertions crossing, and then we can do the OPE in pairs,\footnote{Although this computation will look like we need $x_{3,4}$ to be sufficiently far from $x_{1,2}$, it in fact will be correct whenever we can draw any sphere separating $x_1,x_2$ from $x_3,x_4$, and this is because the beautiful scale invariance in CFT.}
 \begin{multline}
@@ -344,46 +515,55 @@ We can pair up the operator (12) (34) by assuming their relative positions are s
 \contraction{}{\f}{(x_1)}{\f}
 \f(x_3)\f(x_4)
 \> \\
-= \sum_{\cO,\cO'}f_{\f\f\cO}f_{\f\f\cO'} C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\<\cO^a(x_2)\cO'^b(x_4)\> \\
-= \sum_\cO f_{\f\f\cO}^2 C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\frac{I^{ab}(x_{24})}{x_{24}^{2\De_\cO}} \\
-= \frac{1}{x_{12}^{\De_\f} x_{34}^{\De_\f}}\sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(x_i),
+= \sum_{\cO,\cO'}f_{\f\f\cO}f_{\f\f\cO'} C(x_{12},\ptl_2)C(x_{34},\ptl_4)\<\cO(x_2)\cO'(x_4)\> \\
+= \sum_\cO f_{\f\f\cO}^2 C(x_{12},\ptl_2)C(x_{34},\ptl_4)\frac{1}{x_{24}^{2\De_\cO}} \\
+= \frac{1}{x_{12}^{2\De_\f} x_{34}^{2\De_\f}}\sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(x_i),
 \end{multline}
 
-In the second line, we use the fact that the correlation function vanishes unless the operators have the same eigenvalue, and 
+In the second line, we use the fact that the correlation function vanishes unless the operators have the same eigenvalue, and
+
 \be
 \label{eq:olddefinitionofg}
-g_{\De,\ell}(x_i) &\equiv& x_{12}^{\De_\f} x_{34}^{\De_\f} C_a(x_{12},\ptl_2)C_b(x_{34},\ptl_4)\frac{I^{ab}(x_{24})}{x_{24}^{2\De}}.
+g_{\De}(x_{12},x_{34},x_{24}) &\equiv& x_{12}^{2\De_\f} x_{34}^{2\De_\f} C(x_{12},\ptl_2)C(x_{34},\ptl_4)\frac{1}{x_{24}^{2\De}}.
 \ee
-Recall that we've chosen an orthonormal basis of primary operators and used that
+
+Recall that we have chosen an orthonormal basis for the primary operators and used
 \be
 \label{eq:canonicallynormalizedtwopt}
-\<\cO^a(x)\cO'^b(0)\> &=& \de_{\cO\cO'} \frac{I^{ab}(x)}{x^{2\De_\cO}},
+\<\cO(x)\cO'(0)\> &=& \frac{\de_{\cO\cO'}}{x^{2\De_\cO}}.
 \ee
-where $I^{ab}(x)=I^{\mu_1\cdots\mu_\ell,\nu_1\cdots\nu_\ell}(x)$ is the tensor defined in previous section.
 
-The functions $g_{\De,\ell}(x_i)$ are called {\it conformal blocks}.  Although not obvious from the definition, they are functions of the conformal cross-ratios $u,v$ alone.  We thus have the conformal block decomposition
+% where $I^{AB}(x)=I^{\mu_1\cdots\mu_\ell,\nu_1\cdots\nu_\ell}(x)$ is the tensor defined in previous section.
+
+The functions $g_{\De}(x_{12},x_{34})$ are called {\it conformal blocks}. They are functions of the conformal cross-ratios $u,v$ alone, then the conformal block decomposition
 \be
-g(u,v) &=& \sum_\cO f_{\f\f\cO}^2 g_{\De_\cO,\ell_\cO}(u,v).
+g(u,v) &=& \sum_\cO f_{\f\f\cO}^2 g_{\De_\cO}(u,v).
 \ee
 % \begin{exercise}
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-Using the differential operator (\ref{eq:identicalscalaropeoperator}) and (\ref{eq:olddefinitionofg}), show
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+Using the differential operator (\ref{eq:identicalscalaropeoperator}), (\ref{eq:olddefinitionofg}) becomes
+\[
+g_{\De}(u,v) = x_{12}^{2\De_{\f}}x_{34}^{2\De_{\f}} x_{12}^{\De-2\De_{\f}} \left(1+\cdots\right) x_{34}^{\De-2\De_{\f}} \left(1+\cdots\right)\frac{1}{x_{24}^{2\De}}
+\]
+\[
+=\left(\frac{x_{12}x_{34}}{x_{13}x_{24}}\right)^{\De}\cdot\frac{x_{13}^{\De}}{x_{24}^{\De}} \left(1+\cdots\right)
+\]
 \be
 \label{eq:boundaryconditionforblock}
-g_{\De,0}(u,v) &=& u^{\De/2}\p{1+\dots}.
+&=& u^{\De/2}\p{1+\cdots}.
 \ee
 % \end{exercise}
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-% \begin{exercise}
-Using (\ref{eq:scalarscalarspinL}), argue that $x^{2\De_\f} C_{\f\f\cO}(x,\ptl)$ is independent of $\Delta_\phi$ for any spin of $\cO$. Conclude that $g_{\De,\ell}(u,v)$ is independent of $\Delta_\phi$. (This is a special property of conformal blocks for operators with identical scaling dimensions.)
-% \end{exercise}
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+% % \begin{exercise}
+% Using (\ref{eq:scalarscalarspinL}), argue that $x^{2\De_\f} C_{\f\f\cO}(x,\ptl)$ is independent of $\Delta_\phi$ for any spin of $\cO$. Conclude that $g_{\De,\ell}(u,v)$ is independent of $\Delta_\phi$. (This is a special property of conformal blocks for operators with identical scaling dimensions.)
+% % \end{exercise}
 
-\noindent\rule[0.5ex]{\linewidth}{1pt}
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
 
 \subsection{Conformal Block in Radial Quantization}
 
-As we mentioned the conformal invariance determines the form of the correlation function, but we also note that the simplest possible conformal invariants are the cross ratios $u, v$, thus the four-point correlation function can be fixed up to a function of cross-ratio. This is similar to the spherical symmetric function $f(r)$. 
+As we mentioned, conformal invariance determines the form of the correlation function, but we also note that the simplest possible conformal invariants are the cross ratios $u, v$, so the four-point correlation function can be fixed up to a cross-ratio function. This is similar to the spherical symmetric function $f(r)$, in which we cannot tell the dependence on $r$ simply by spherical symmetry. 
 
 From this point of view, it is obvious that the conformal block, as the simplest building block for a higher-point correlation function, should solely depend on cross-ratio, as it represents the conformal invariance of the four-point correlation function.
 
@@ -394,10 +574,12 @@ In radial quantization, suppose an origin is chosen such that $|x_{3,4}|\geq |x_
 \ee
 For a primary operator $\cO$, let $|\cO|$ be the projector onto the conformal multiplet of $\cO$,
 \be
-|\cO| &\equiv& \sum_{\a,\b=\cO,P\cO,PP\cO,\dots} \mathcal{N}^{-1}_{\a\b}|\a\>\<\b|,\qquad
-\text{Normalization factor }\mathcal{N}_{\a\b} \equiv \<\a|\b\>.
+\begin{split}
+|\cO| &\equiv& \sum_{\a,\b=\cO,P\cO,PP\cO,\dots} \mathcal{N}^{-1}_{\a\b}|\a\>\<\b|
+\end{split}
 \ee
-Summing all projects of all primaries, we get the identity,
+where $\text{normalization factor }\mathcal{N}_{\a\b} \equiv \<\a|\b\>.$
+Summing all projects of all primaries, we get the identity
 \be
 \mathbf{1} &=& \sum_\cO |\cO|.
 \ee
@@ -406,15 +588,15 @@ Inserting the identity into (\ref{eq:fourptradial}) gives
 \label{eq:insertingprojector}
 \<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \sum_\cO\<0|\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO|\mathcal{R}\{\f(x_1)\f(x_2)\}|0\>.\nn\\
 \ee
-
+Then,
 \be
 \label{eq:newdefinitionofg}
 \begin{split}
 \<0|\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO|\mathcal{R}\{\f(x_1)\f(x_2)\}|0\> &=&
 \\
-\sum_{\mathcal{O}',\mathcal{O}''}\<0|\mathcal{R}\{f_{\f\f\cO'} C_a(x_{12},\ptl_2)\cO'^a(x_2) \}|\mathcal{O}|\mathcal{R}\{f_{\f\f\cO''}C_b(x_{34},\ptl_4)\cO''^b(x_4)\}|0\>
+\sum_{\mathcal{O}',\mathcal{O}''}\<0|\mathcal{R}\{f_{\f\f\cO'} C(x_{12},\ptl_2)\cO'(x_2) \}|\mathcal{O}|\mathcal{R}\{f_{\f\f\cO''}C(x_{34},\ptl_4)\cO''(x_4)\}|0\>
 \\
-=\frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO,\ell_\cO}(u,v).\qquad
+=\frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO}(u,v).\qquad
 \end{split}
 \ee
 Each term in the sum is a conformal block times a squared OPE coefficient and some conventional powers of $x_{ij}$.
@@ -427,26 +609,32 @@ Each term in the sum is a conformal block times a squared OPE coefficient and so
 
 % \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-This expression makes it clear why $g_{\De,\ell}$ is a function of cross-ratio $u$ and $v$: \textit{the projector $|\cO|$ commutes with all conformal generators (by construction); therefore, (\ref{eq:newdefinitionofg}) above satisfies all the same Ward identities as a four-point function of primaries, and it must take the form of four-point correlation function}. In path integral language, $|\cO|$ can be thought of as a surface operator, and we insert it on a sphere separating $x_{1,2}$ from $x_{3,4}$.
+This expression makes it clear why $g_{\De}$ is a function of cross-ratio $u$ and $v$: \textit{the projector $|\cO|$ commutes with all conformal generators (by construction); therefore, (\ref{eq:newdefinitionofg}) above satisfies all the same Ward identities as a four-point function of primaries, and must take the form of a four-point correlation function}. In path integral language, $|\cO|$ can be thought of as a surface operator, and we insert it on a sphere separating $x_{1,2}$ from $x_{3,4}$.
 
 \subsection{Methods of Conformal Casimir}
 
-We can now give a simple and elegant way to compute the conformal block, due to Dolan \& Osborn \cite{Dolan_2004}. Recall that the conformal group is isomorphic to $\SO(d+1,1)$, with generators $L_{ab}$ given in the previous section. The usual quadratic Casimir operator $C=-\frac 1 2 L^{ab}L_{ab}$ acts with the same eigenvalue on every state in an irreducible representation.  
+In \cite{Dolan_2004}, the calculation of the conformal block can be done by the differential equation in embedding formalism mentioned previously. Recall that the conformal group is isomorphic to $SO(d+1,1)$, with generators $L_{AB}$ given in the previous section. The usual quadratic Casimir operator $C=-\frac 1 2 L^{AB}L_{AB}$ acts with the same eigenvalue on every state in an irreducible representation in $SO(d+1,1)$.  
 % \begin{exercise}
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 Show that this eigenvalue is given by
 \be
-C|\cO\> &=& \l_{\De,\ell}|\cO\>,\nn\\
-\l_{\De,\ell} &\equiv& \De(\De-d)+\ell(\ell+d-2).
+C|\cO\> &=& \l_{\De}|\cO\>,\nn\\
+\l_{\De} &\equiv& \De(\De-d).
 \ee
 % \end{exercise}
 
 \noindent\rule[0.5ex]{\linewidth}{1pt}
 
-Casimir operator $C$ gives this same eigenvalue $\lambda_{\Delta,l}$ when acting on the projection operator $|\cO|$ from either the left or right,
+Casimir operator $C$ gives this same eigenvalue $\lambda_{\Delta}$ when acting on the projection operator $|\cO|$ from left or right,
 \be
-C|\cO|=|\cO| C = \l_{\De,\ell}|\cO|.
+C|\cO|=|\cO| C = \l_{\De}|\cO|.
+\ee
+
+We've defined $X^{M}$ to generalize the form of a conformal generator, which can be written as a $SO(d+1,1)$ operator:
+\be
+\label{eq:conformalgeneratorinembeddingformalism}
+L_{AB} = X_A\frac{\ptl }{\ptl X^{B}} - X_{B}\frac{\ptl }{\ptl X^A}
 \ee
 
 In quantum mechanics, the commutation relation of momentum operator $\hat{p}$ and wavefunction $\psi(x)$ can be represented by the partial derivative on wavefunction:
@@ -455,44 +643,41 @@ In quantum mechanics, the commutation relation of momentum operator $\hat{p}$ an
     \left[\hat{p},\psi(x)\right] = -i\frac{\partial\psi(x)}{\partial x}
 \end{equation}
 
-Similarly, we can promote the conformal generators $L_{ab}$ to some differential operator $\cL_{ab,i}$ that gives differential equation of $\f(x_i)$,
+Similarly, we can promote the conformal generators $L_{AB}$ to some differential operator $\cL_{AB,i}$ that gives differential equation of $\f(x_i)$,
 \be
-(\cL_{ab,1}+\cL_{ab,2})\f(x_1)\f(x_2) &=& \p{[L_{ab},\f(x_1)]\f(x_2)+\f(x_1)[L_{ab},\f(x_2)]}\nn\\
-&=& \left[L_{ab}, \f(x_1)\f(x_2)\right].
+(\cL_{AB,1}+\cL_{AB,2})\f(x_1)\f(x_2) &=& \p{[L_{AB},\f(x_1)]\f(x_2)+\f(x_1)[L_{AB},\f(x_2)]}\nn\\
+&=& \left[L_{AB}, \f(x_1)\f(x_2)\right].
 \ee
 Thus, 
 \be
 \left[C, \f(x_1)\f(x_2)\right] &=& \cD_{1,2}\f(x_1)\f(x_2),\nn\\
-\textrm{where}\qquad\cD_{1,2} &\equiv& -\frac 1 2(\cL^{ab}_{1}+\cL^{ab}_{2})(\cL_{ab,1}+\cL_{ab,2}).
+\textrm{where}\qquad\cD_{1,2} &\equiv& -\frac 1 2(\cL^{AB}_{1}+\cL^{AB}_{2})(\cL_{AB,1}+\cL_{AB,2}).
 \ee
 We then have
 \begin{align}
 \cD_{1,2}\<0|&\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO|\mathcal{R}\{\f(x_1)\f(x_2)\}|0\>\nn\\
 &=
 \<0|\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO| C\mathcal{R}\{\f(x_1)\f(x_2)\}|0\>\nn\\
-&= \l_{\De,\ell}\<0|\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO|\mathcal{R}\{\f(x_1)\f(x_2)\}|0\>.
+&= \l_{\De}\<0|\mathcal{R}\{\f(x_3)\f(x_4)\}|\cO|\mathcal{R}\{\f(x_1)\f(x_2)\}|0\>.
 \end{align}
-Plugging in (\ref{eq:newdefinitionofg}), we find that $g_{\De,\ell}$ satisfies the differential equation 
+Plugging in (\ref{eq:newdefinitionofg}), we find that $g_{\De}$ satisfies the differential equation 
 \be
 \label{eq:conformalcasimir1}
-\cD_{1,2} \frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO,\ell_\cO}(u,v) &=& \lambda_{\Delta_\cO,\ell_\cO} \frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO,\ell_\cO}(u,v)
+\cD_{1,2} \frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO}(u,v) &=& \lambda_{\Delta_\cO} \frac{f_{\f\f\cO}^2}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}g_{\De_\cO}(u,v)
 \ee
-One way to compute the differential operator on an arbitrary function of cross-ratio is to use the embedding formalism mentioned in the previous section, we've defined $X^{M}$ to generalize the form of a conformal generator, which can be written as a $SO(N)$ operator:
-\be
-\label{eq:conformalgeneratorinembeddingformalism}
-L_{AB} = X_A\frac{\ptl }{\ptl X^{B}} - X_{B}\frac{\ptl }{\ptl X^A}
-\ee
-In this formalism, the cross-ratio becomes 
+
+By transformation of variables, the cross-ratio becomes
 \be
 \label{eq:crossratio}
 \begin{split}
-    u\\
-    v
+    u\equiv \frac{x_{12}^2x_{34}^2}{x_{13}^2x_{24}^2} = z\bar{z}\\
+    v\equiv \frac{x_{23}^2x_{14}^2}{x_{13}^2x_{24}^2} = (1-z)(1-\bar{z})
 \end{split}
 \ee
+where $z$ is a complex number.
 \be
 \label{eq:conformalcasimir}
-\cD g_{\De,\ell}(u,v) &=& \l_{\De,\ell} g_{\De,\ell}(u,v),
+\cD g_{\De}(u,v) &=& \l_{\De} g_{\De}(u,v),
 \ee
 where the second-order differential operator $\cD$ is given by $\cD_{1,2}$
 \be
@@ -500,7 +685,7 @@ where the second-order differential operator $\cD$ is given by $\cD_{1,2}$
 && + 2(d-2)\frac{z\bar z}{z-\bar z}((1-z)\ptl_z - (1-\bar z)\ptl_{\bar z}).
 \ee
 
-We then determine the conformal block $g_{\Delta,l}(u,v)$ by solving the differential equation (\ref{eq:conformalcasimir}).
+We then determine the conformal block $g_{\Delta}(u,v)$ by solving the differential equation (\ref{eq:conformalcasimir}).
 % In even dimensions, the Casimir equation can be solved analytically. For example, in 2d and 4d \cite{DO1,DO2},
 % \be
 % \label{eq:explicitblock2d}
@@ -511,193 +696,271 @@ We then determine the conformal block $g_{\Delta,l}(u,v)$ by solving the differe
 % \ee
 % In odd dimensions, no explicit formula in terms of elementary functions is known.  
 % However, the blocks can still be computed in a series expansion using the Casimir equation or alternative techniques like recursion relations.
-The block can also be solved by other methods like recursion relations.
+Other methods like recursion relations can also solve the block.
 
 \subsection{Series Expansion of Conformal Blocks}
-
-It will be helpful to understand the series expansion of the conformal blocks in more detail.
- The ``radial coordinates" of \cite{Pappadopulo:2012jk, Hogervorst:2013sma} are ideal for this purpose.
- Using conformal transformations, we can place all four operators on a plane in the configuration shown in figure~\ref{fig: rho}.  This makes it clear that the conformal block expansion is valid whenever $|\rho|<1$.
-
-\begin{figure}
+As we have shown, we can perform coordinate transformation as long as the conformal invariance is maintained, which allows us to write the conformal block elegantly. In this section, we introduce radial coordinate formalism \cite{Hogervorst_2013} which manifests the conformal invariance explicitly.
+% Using conformal transformations, we can place all four operators on a plane in the configuration shown in figure~\ref{fig:rho}.  This clarifies that the conformal block expansion is valid whenever $|\rho|<1$.
+Consider $d=2$ conformal field theory and four spacetime point $x_1,x_2,x_3,x_4$, we can move $x_4$ to $(\infty,0)$ by special conformal transformation (solving $1-2(a\cdot x_4)+a^2x_4^2 = 0$ for $a$). Then we apply translations in $0-$ and $1-$ components so that $x_1$ sits in origin, and we can apply rotation transformation and dilatation transformation so that $x_3$ is located at $(1,0)$, leaving $x_2 = z$ unfixed. 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.4\textwidth]{fig-z}
+\end{center}
+\caption{\label{fig:zplane} Using conformal transformations in $d=2$ spacetime, any four points can be placed on a complex plane in the configuration shown above (from \cite{Hogervorst_2013}).}
+\end{figure}
+We have recovered the formula (\ref{eq:crossratio}) for cross-ratio in the previous section. Moreover, we can transform a line segment to a circle by conformal transformation, and one famous example is \textit{fractional linear transformations}. If we consider mapping line segment $x_{34}$ to a unit circle and line segment $x_{12}$ to a circle of radius $\rho$. And it turns out that the mapping is non-trivial than fractional linear transformation. If we consider placing $x_{i}$ in the following configuration
+\begin{figure}[h]
 \begin{center}
 \includegraphics[width=0.55\textwidth]{fig-rho}
 \end{center}
-\caption{Any four points can be brought to the above configuration using conformal transformations. (Figure from \cite{Hogervorst:2013sma}.)  \label{fig:rho}}
+\caption{Any four points can be brought to the above configuration using conformal transformations. (from \cite{Hogervorst_2013}.)  \label{fig:rho}}
 \end{figure}
-
-% \begin{exercise}
-Show that $\rho=re^{i\theta}$ is related to $z$ via
+The mapping is
 \be
 \label{eq:radialcoordinatedefinition}
-\rho = \frac{z}{(1+\sqrt{1-z})^2},\qquad z = \frac{4\rho}{(1+\rho)^2}
+w = \frac{z}{(1+\sqrt{1-z})^2},\qquad z = \frac{4w}{(1+w)^2}
 \ee
-(and similarly for $\bar\rho=r e^{-i\theta}$ and $\bar z$).
+Note that the non-trivial point of this mapping is that $x_1 = (0,0)$ in Fig.(\ref{fig:zplane}) is mapped to origin at first sight, but in fact, we should forget Fig.(\ref{fig:zplane}) and view (\ref{eq:radialcoordinatedefinition}) as a transformation of $z$. $u$ and $v$ are invariant under this transformation, so it is conformal:
+\[
+u = \frac{16w\bar{w}}{|w+1|^2|-w-1|^2} = z\bar z
+\]
+\[
+v = \frac{|w-1|^2|-w+1|^2}{|-w-1|^2|w+1|^2} = (1-z)(1-\bar z)
+\]
+% (and similarly for $\bar\rho=r e^{-i\theta}$ and $\bar z$).
 % \end{exercise}
+Now we are ready to use this picture to derive the expansion of the conformal block, and now the radially ordered product of the 4-point correlation function is easily realized by demanding $|\rho|<1$ in Fig.(\ref{fig:rho}).
 
-In radial quantization, this corresponds to placing cylinder operators (\ref{eq:definitionofcylinderop}) at diametrically opposite points $\pm \bn$ and $\pm \bn'$ on $S^{d-1}$, with $\cos\th=\bn\.\bn'$, and with the pairs separated by time $\tau=-\log r$ (figure~\ref{fig:cylinderconfig}).  The conformal block is then
+Since the spacetime points are now placed in a spherical symmetry way, Cylindrical quantization is a natural way to simplify the Euclidean space $\mathbb{R}^d$ to $(0, \infty) \times \mathbb{S}^{d-1}$ and promotes the radial distance as evolution "time" $\tau = -\ln(r)$. In cylindrical quantization, Fig(\ref{fig:rho}) corresponds to placing cylinder operators $\cO_{\text{cyl}}(\tau, \bn) = \exp(-\tau\Delta)\.\cO_{\text{rad}}(x=\exp(-\tau)\bn$ at diametrically opposite points $\pm \bn$ and $\pm \bn'$ on $\mathbb{S}^{d-1}$, with $\cos\th=\bn\.\bn'$, and with the pairs separated by time $\tau= -\ln r$ shown in Fig.(~\ref{fig:cylinderconfig}). If we denote $\bn'$ as $\cO_{1}$ and $\cO_{2}$ insertions, $\bn$ as $\cO_3$ and $\cO_4$, and we also define the state with normalization factor from (\ref{eq:newdefinitionofg})
+\be
+|\psi(\bn)\> &\equiv& \frac{4^{\De_\f}}{f_{\f\f\cO}}\phi_\mathrm{cyl}(0,\bn)\phi_\mathrm{cyl}(0,-\bn)|0\>,
+\ee
+where $4^{\De_\f}$ is from $x_{12}^{-2\De_\f} = (2|\rho|)^{-2\De_{\f}}$ then the conformal block is
 \be
 \label{eq:blockintermsofpsi}
- g_{\De,\ell}(u,v) &=& \<\psi(\bn)||\cO|e^{-\tau D}|\psi(\bn')\>,
+ g_{\De}(u,v) &=& \<\psi(\bn)||\cO|e^{-\tau D}|\psi(\bn')\>,
 \ee
-where we've defined the state\footnote{The factor $2^{\De_\f}=\<\f_\mathrm{cyl.}(0,\bn)\f_\mathrm{cyl.}(0,-\bn)\>^{-1}$ comes from transforming $x_{12}^{-2\De_\f}$ to the cylinder (exercise!).}
-\be
-|\psi(\bn)\> &\equiv& \frac{2^{\De_\f}}{f_{\f\f\cO}}\phi_\mathrm{cyl.}(0,\bn)\phi_\mathrm{cyl.}(0,-\bn)|0\>.
-\ee
+where $\tau = -\ln(1-|\rho|)$.
 
-
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
 \includegraphics[width=0.75\textwidth]{cylinderconfig.jpg}
 \end{center}
 \caption{Configuration on the cylinder corresponding to (\ref{eq:blockintermsofpsi}).  \label{fig:cylinderconfig}}
 \end{figure}
 
-A descendant $P^{\mu_1}\cdots P^{\mu_n}|\cO\>$ has energy $\De+n$ on the cylinder.  Within the $n$-th energy level, the $\SO(d)$ spins that appear are
+The eigenvalue of $D$ for a descendant $P^{\mu_1}\cdots P^{\mu_n}|\cO\>$ is $\De+n$ on the cylinder. 
+Within the $n$-th level, the $\SO(d)$ spins of a spinless primary are caused by the momentum operator:
 \be
 \label{eq:rangeofjs}
-j \in \{\ell+n,\ell+n-2,\dots,\mathrm{max}(\ell-n,\ell+n\,\,\mathrm{mod}\,\,2)\}.
+j \in \{n,n-2,\dots\}.
 \ee
-Consider a set of descendant states $|n,j\>^{\mu_1\cdots\mu_j}$ with energy $\De+n$ and spin $j$. They contribute
+Then we denote the set of descendant and primary states as $|n,j\>^{\mu_1\cdots\mu_j}$ with eigenvalue $\De+n$ and spin $j$. The projector $|\cO|$ as a summation of primaries and descendants, and (\ref{eq:blockintermsofpsi}) becomes
 \be
-r^{\De+n} \<\psi(\bn)|n,j\>^{\mu_1\cdots\mu_j}{}_{\mu_1\cdots\mu_j}\<n,j|\psi(\bn')\>.
+r^{\De+n} \<\psi(\bn)|n,j\>^{\mu_1\cdots\mu_j}{}_{\mu_1\cdots\mu_j}\<n,j|\psi(\bn')\>,
 \label{eq:definitespinandenergy}
 \ee
+where $r^{\De+n} = (1-|\rho|)^{\De+n}$ comes from the operator $\exp(-\tau\hat D)$.
 By rotational invariance,
+% \be
+% \<\psi(\bn)|n,j\>^{\mu_1\cdots\mu_j} &\propto& \bn^{\mu_1}\cdots\bn^{\mu_j}-\mathrm{traces}.
+% \ee
+% Because $|\psi(\bn)\>=|\psi(-\bn)\>$, $j$ must be even (and thus $n$ is even).
+Recall in the theory of hyperspherical harmonics, the Gegenbauer polynomial provides an orthogonal basis,
+% \be
+% C_j^{\frac{d-2}{2}}(\bn\cdot\bn') &\propto& (\bn^{\mu_1}\cdots\bn^{\mu_j}-\mathrm{traces})(\bn'_{\mu_1}\cdots\bn'_{\mu_j}-\mathrm{traces}),
+% \ee
+so (\ref{eq:definitespinandenergy}) can be expanded as
 \be
-\<\psi(\bn)|n,j\>^{\mu_1\cdots\mu_j} &\propto& \bn^{\mu_1}\cdots\bn^{\mu_j}-\mathrm{traces}.
+r^{\De+n} \<\psi(\bn)|n,j\>^{\mu_1\cdots\mu_j}{}_{\mu_1\cdots\mu_j}\<n,j|\psi(\bn')\> &\propto& r^{\De+n}C_j^{\frac{d-2}{2}}(\cos\th),
 \ee
-Because $|\psi(\bn)\>=|\psi(-\bn)\>$, $j$ must be even (and thus $n$ is even).
-The contraction of two traceless symmetric tensors is a Gegenbauer polynomial,
-\be
-C_j^{\frac{d-2}{2}}(\bn\cdot\bn') &\propto& (\bn^{\mu_1}\cdots\bn^{\mu_j}-\mathrm{traces})(\bn'_{\mu_1}\cdots\bn'_{\mu_j}-\mathrm{traces}),
-\ee
-so (\ref{eq:definitespinandenergy}) becomes
-\be
-r^{\De+n} \<\psi(\bn)|n,j\>^{\mu_1\cdots\mu_j}{}_{\mu_1\cdots\mu_j}\<n,j|\psi(\bn')\> &\propto& r^{\De+n}C_j^{\frac{d-2}{2}}(\cos\th).
-\ee
+where $\cos(\th) = \bn'\.\bn$
 
 Summing over descendants, we find
 \be
 \label{eq:seriesexpansion}
-g_{\De,\ell}(u,v) &=& \sum_{\substack{n=0,2,\dots \\ j}} B_{n,j}r^{\De+n}C_j^{\frac{d-2}{2}}(\cos\th),\label{eq:seriesforblock}
+g_{\De}(u,v) &=& \sum_{\substack{n=0,2,\dots \\ j}} B_{n,j}r^{\De+n}C_j^{\frac{d-2}{2}}(\cos\th),\label{eq:seriesforblock}
 \ee
-where $j$ ranges over the values in (\ref{eq:rangeofjs}) and $B_{n,j}$ are constants.  
-Notice a few properties:
+where $j$ goes over (\ref{eq:rangeofjs}) and $B_{n,j}$ are constant coefficients.  
+Notice a few properties in \cite{simmonsduffin2016tasilecturesconformalbootstrap}:
 \begin{itemize}
-\item The leading term in the $r$-expansion comes from the primary state $|\cO\>$ with $n=0$ and $j=\ell$. This can be used as a boundary condition in the Casimir equation to determine the higher coefficients $B_{n,j}$.
-\item The $B_{n,j}$ are positive in a unitary theory because they are given by norms of projections of $|\psi\>$ onto energy and spin eigenstates.
-\item The $B_{n,j}$ are rational functions of $\De$.  This follows because the Casimir eigenvalue $\l_{\De,\ell}$ is polynomial in $\De$, or from the fact that the differential operators $C_a(x,\ptl)$ appearing in the OPE (\ref{eq:scalarscalarOPE}) have a series expansion in $x$ with rational coefficients, see exercise~\ref{exercise:seriesfordiffops}. 
+\item The leading term in the $r$ expansion comes from the primary state $|\cO\>$ with $n=0$ and $j=0$. This can be used as a boundary condition in the Casimir equation to determine the higher coefficients $B_{n,j}$.
+\item The $B_{n,j}$ are positive in a unitary theory because they are given by norms of projections of $|\psi\>$ onto dilatation and spin eigenstates.
+\item The $B_{n,j}$ are rational functions of $\De$.  This follows because the Casimir eigenvalue $\l_{\De}$ is polynomial in $\De$, or from the fact that the differential operators $C_a(x,\ptl)$ appearing in the OPE (\ref{eq:scalarscalarOPE}) have a series expansion in $x$ with rational coefficients. 
 \end{itemize}
 
 % \begin{exercise}
-\noindent\rule[0.5ex]{\linewidth}{1pt}
-Expand $g^{(2d)}_{\De,\ell}(u,v)$ and $g^{(4d)}_{\De,\ell}(u,v)$ to the first few orders in $r$, and check these properties.  Verify that some of the coefficients $B_{n,j}$ become negative when $\De$ violates the unitarity bound.
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
+% Expand $g^{(2d)}_{\De}(u,v)$ and $g^{(4d)}_{\De}(u,v)$ to the first few orders in $r$, and check these properties.  Verify that some of the coefficients $B_{n,j}$ become negative when $\De$ violates the unitarity bound.
 % \end{exercise}
 
 % \begin{exercise}
-By rewriting in terms of $r,\th$ and using (\ref{eq:seriesexpansion}), show that even spin blocks are invariant under $x_1\leftrightarrow x_2$ or $x_3\leftrightarrow x_4$,
+(\ref{eq:seriesexpansion}) shows that spinless blocks are invariant under $x_1\leftrightarrow x_2$ or $x_3\leftrightarrow x_4$, where $r = 1-|\rho|$ is invariant and $\cos(\th) = \bn'\.\bn\rightarrow-\cos(\th)$, but $C^{\frac{d-2}{2}}_{j}(\cos\th)$ is symmetric function of $\cos\th$, and $u\rightarrow\frac u v,v\rightarrow\frac 1 v$,
 \be
 \label{eq:invariantunderonetwo}
-g_{\De,\ell}(u,v) &=& g_{\De,\ell}\p{\frac{u}{v},\frac 1 v},\qquad(\textrm{$\ell$ even}).
+g_{\De}(u,v) &=& g_{\De}\p{\frac{u}{v},\frac 1 v}
 \ee
 % \end{exercise}
-\noindent\rule[0.5ex]{\linewidth}{1pt}
+% \noindent\rule[0.5ex]{\linewidth}{1pt}
 
 
 \section{Conformal Bootstrap}
+\subsection{OPE Associativity and Crossing Symmetry}
+
+OPE determines $n$-point functions as sums of $(n-1)$-point functions,
+\be
+\label{eq:usingOPEtoreducecorrelator}
+\<\cO_1(x_1)\cO_k(x_2)\cdots\cO_n(x_n)\> &=& \sum_k C_{12k}(x_{12},\ptl_2)\<\cO_2(x_2)\cdots\cO_n(x_n)\>,\nn\\
+\ee
+and finally in terms of $\De_i,f_{ijk}$, called "CFT data" as the differential operators $C_{ijk}(x,\ptl)$ are determined by conformal symmetry in terms of dimensions $\De_i$, spins, and 3-point correlation function coefficients $f_{ijk}$.
+
+The bootstrap program uses consistent conditions to find out if a provided "CFT data" builds up a consistent CFT.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{opedifferentways.jpg}
+\end{center}
+\caption{Two different pairings of evaluating a five-point function using the OPE\@.  Dots represent operator insertions, and vertices represent the pairing order.\label{fig:opedifferentways}}
+\end{figure}
+
+Doing the OPE between different pairs of operators in different orders (see Fig~\ref{fig:opedifferentways}), we get different expressions for the same correlation function in terms of CFT data. There is no way to prevent them from being the same, it is the consistent conditions on the OPE.
+\be
+\contraction{}{
+\frac 1 2\!\!\!\!\!
+\cO_1\cO_2
+}{}{\cO_3}
+\contraction{}{\cO_1}{}{\cO_2}
+\cO_1\cO_2\cO_3
+&=&
+\contraction{}{
+\frac 1 2\!\!\!\!\!
+\cO_1
+}{}{
+\contraction{}{\cO_2}{}{\cO_3}
+\cO_2\cO_3
+}
+\contraction{\cO_1}{\cO_2}{}{\cO_3}
+\cO_1\cO_2\cO_3,
+\ee
+or more explicitly,
+\be
+\label{eq:OPEassociativity}
+C_{12i}(x_{12},\ptl_2)C_{i3j}(x_{23},\ptl_3)\cO_j(x_3) &=& C_{23i}(x_{23},\ptl_3)C_{1ij}(x_{13},\ptl_3)\cO_j(x_3).\nn\\
+\ee
+Consider additional $\cO_4(x_4)$ gives the so-called {\it crossing symmetry equation}
+
+\be
+\label{eq:graphicalcrossing}
+\hspace{-0.4in}
+\setlength{\unitlength}{.4in}
+\begin{picture}(7,1.7)(0,0.2)
+\linethickness{1pt}
+\put(1.7,0.4){\line(1,2){0.3}}
+\put(1.7,1.6){\line(1,-2){0.3}}
+\put(2,1){\line(1,0){0.8}}
+\put(2.8,1){\line(1,2){0.3}}
+\put(2.8,1){\line(1,-2){0.3}}
+\put(1.2,1){\makebox(0,0){$\mathlarger{\sum}_i^{\phantom\cO}$}}
+\put(4,1){\makebox(0,0){$=$}}
+\put(1.65,1.8){\makebox(0,0){\small $1$}}
+\put(1.65,0.2){\makebox(0,0){\small $2$}}
+\put(3.15,1.8){\makebox(0,0){\small $4$}}
+\put(3.15,0.2){\makebox(0,0){\small $3$}}
+\put(5.38,1.8){\makebox(0,0){\small $1$}}
+\put(5.38,0.2){\makebox(0,0){\small $2$}}
+\put(6.6,1.8){\makebox(0,0){\small $4$}}
+\put(6.6,0.2){\makebox(0,0){\small $3$}}
+\put(6.3,1){\makebox(0,0){\small $\cO_i$}}
+\put(2.4,1.2){\makebox(0,0){\small $\cO_i$}}
+\put(5,1){\makebox(0,0){$\mathlarger{\sum}_i^{\phantom\cO}$}}
+\put(6,0.6){\line(0,1){0.8}}
+\put(5.5,0.35){\line(2,1){0.5}}
+\put(6,0.6){\line(2,-1){0.5}}
+\put(6,1.38){\line(2,1){0.5}}
+\put(5.5,1.65){\line(2,-1){0.5}}
+\end{picture}.
+\ee
+The left-hand side is the conformal block expansion of $\<\cO_1\cO_2\cO_3\cO_4\>$ in the $12\leftrightarrow 34$ channel, while the right-hand side is the expansion in the $14\leftrightarrow 23$ channel. This is just an analog to describe conformal blocks as we do in scattering amplitudes.
+% The crossing equation (\ref{eq:graphicalcrossing}) is a powerful but complicated constraint on the CFT data.  The rest of this course will be devoted to studying its implications for the simplest possible case: a four-point function of identical scalars $\<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\>$.  
+
+% \subsubsection{Additional Structures and Consistency Conditions}
+\label{sec:additionalstructures}
+
+% Before jumping in, let us reflect on the implications of exercise~\ref{ex:crossingexercise}:  A solution to the crossing equations~(\ref{eq:graphicalcrossing}) gives a completely nonperturbative definition of flat-space correlation functions of local operators, without the need for a Lagrangian.  This is most of the way towards a full theory. However, some structures associated with local QFTs are missing, and additional structures might bring new consistency conditions.
+
+% Firstly, CFTs can admit extended objects like line operators, surface operators, boundaries, and interfaces. These objects have additional data associated with them, and it's possible to write down OPEs and crossing equations that relate this data to itself and the usual CFT data, see e.g. \cite{Liendo:2012hy,Gaiotto:2013nva}.  It is also interesting to consider correlation functions on manifolds not conformally equivalent to flat space. An example includes the theory at finite temperature (discussed in footnote~\ref{foot:finitetemperature}). This introduces more data, for example, the one-point functions of local and extended operators on nontrivial manifolds\footnote {It is known that this data is not determined by the local operator spectrum.  For example, pure Chern-Simons theory has no local operators at all but has interesting nonlocal observables that depend on the gauge group and level \cite{Witten:1988hf}.  Also, 4d conformal gauge theories admit different sets of line operators for the same set of local operators \cite{Aharony:2013hda}.} Other interesting constraints come from studying CFTs in Lorentzian signature. Examples include bounds from energy positivity \cite{Hofman:2008ar}, dispersion relations \cite{Komargodski:2011vj,Nachtmann:1973mr,Komargodski:2012ek,Komargodski:2016gci}, and causality \cite{Maldacena:2015waa,Hartman:2015lfa}.
+
+% The full set of data and consistency conditions associated with a CFT is not known in general. However, we do have examples of constraints on local operators beyond the OPE and crossing equations. The most famous is modular invariance: the requirement that the partition function of a 2d CFT on the torus $T^2$ is invariant (or covariant) under large diffeomorphisms.  Imposing modular invariance is an additional step that must be performed after solving the crossing equations in 2d CFTs \cite{Moore:1988uz}.\footnote{2d is special because the space of states on a spatial slice $S^1\subset T^2$ is the same as the space of states in radial quantization, and thus modular invariance on $T^2$ directly constrains local operators.  This is not true in $d\geq 3$, so it is not clear how modular invariance on $T^d$ constrains local operators in that case.}
+
+\subsection{Identical Scalar} 
+Consider the 4-point correlation function of identical scalar field $\f$.
+\begin{itemize}
+\item We have the OPE
+\be
+\f(x_1)\f(x_2) &=& \sum_{\cO} f_{\f\f\cO} C(x_{12},\ptl_2) \cO(x_2),
+\ee
+where $\De$ is the dimension of $\cO$.
+
+\item An orthonormal basis of operators $\cO$ are chosen as we did in (\ref{eq:canonicallynormalizedtwopt}).  Unitarity of the operator implies that the three-point coefficients $f_{\f\f\cO}$ are real.
+
+\item Each spinless operator $\cO$ satisfies the unitarity bounds
+\be
+\label{eq:unitarityboundsummary}
+\De &=& 0 \ \textrm{(unit operator), or}\nn\\
+\De &=& \frac{d-2}{2}
+\ee
+
+\item The conformal block expansion for 4-point correlation functions, note the expansion is in $12\leftrightarrow34$ channel.
+\be
+\<\f(x_1)\f(x_2)\f(x_3)\f(x_4)\> &=& \frac{g(u,v)}{x_{12}^{2\De_\f}x_{34}^{2\De_\f}}\\
+g(u,v) &=& \sum_\cO f_{\f\f\cO}^2 g_{\De}(u,v),
+\ee
+where $g_{\De}(u,v)$ are conformal blocks, and the cross ratios are
+\be
+u = z\bar z = \frac{x_{12}^2 x_{34}^2}{x_{13}^2 x_{24}^2},\qquad v=(1-z)(1-\bar z) =\frac{x_{23}^2 x_{14}^2}{x_{13}^2 x_{24}^2}.
+\ee
+
+
+\item Crossing symmetry is equivalent to the condition that our four-point function is invariant under $1\leftrightarrow 3$ or $2\leftrightarrow 4$,
+% \be
+% \label{eq:crossingeqsummary}
+% g(u,v) &=& \p{\frac{u}{v}}^{\De_\f} g(v,u).
+% \ee
+Eq.~(\ref{eq:invariantunderonetwo}) shows that invariance of the four-point function under $1\leftrightarrow 2$ or $3\leftrightarrow 4$ is true block-by-block.  All other permutations can be generated from these.
+
+\end{itemize}
+
+We know at least two operators present in the $\f\x\f$ OPE: the unit operator and the stress tensor.  Normalizing $\f$ so that $\<\f(x)\f(0)\>=x^{-2\De_\f}$, we have $f_{\f\f\mathbf{1}}=1$.  The stress tensor three-point coefficient is set by Ward identities to be $f_{\f\f T_{\mu\nu}}\propto \De_\f/\sqrt{C_T}$, where $C_T$ is the coefficient of the two-point function of the canonically normalized stress tensor (\ref{eq:twopointfunctionofspinL}).  The factor of $1/\sqrt{C_T}$ relative to (\ref{eq:stresstensorward}) comes from choosing the basis of operators $\cO$ to be orthonormal.
+
+
+\subsection{An Infinite Number of Primaries}
+
+To get a feel for the crossing equation (\ref{eq:crossingeqsummary}), let us consider a simple limit: $z\to 0$ with $z=\bar z$. This corresponds to $x_2\to x_1$ with all four operators collinear.
+
+Recall that the blocks go like $g_{\De}(u,v)\sim (z\bar z)^{\De/2}$ in this limit, so the left-hand side of (\ref{eq:crossingeqsummary}) is dominated by the smallest dimension operator in the OPE, the unit operator:
+\be
+\mathrm{LHS} &:& 1+\dots \qquad(z\to 0).
+\ee
+
+Crossing $u\leftrightarrow v$ corresponds to $(z,\bar z)\to (1-z,1-\bar z)$.  In the limit $z\to 0$, the crossed conformal blocks $g_{\De}(1-z,1-z)$ go like $\log z$.
+% \begin{exercise}
+Check this for the explicit formulae (\ref{eq:explicitblock2d}) and (\ref{eq:explicitblock4d}).
+% \end{exercise}
+Thus, each term on the right-hand side goes like
+\be
+\label{eq:rhsterms}
+\textrm{each term, RHS} &:& z^{2\De_\f}\log z + \dots \qquad(z\to 0).
+\ee
+As $z\to 0$, any finite sum of terms of the form (\ref{eq:rhsterms}) vanishes.  Thus, for a sum of operators on the right-hand side to reproduce the unit operator on the left-hand side, we need an infinite number of primary operators.\footnote{This doesn't contradict the textbook statement that rational 2d CFTs contain a finite number of primary operators.  In that context, ``primary" refers to primary operators concerning the Virasoro algebra.  Here, we are discussing primaries concerning the global conformal group, which is $\mathrm{SL}(2,\R)\x\mathrm{SL}(2,\R)$ in 2d.  A single Virasoro representation contains an infinite number of global conformal representations.}
+
+One can prove that as $z\to 0$, the sum on the right-hand side is dominated by operators of dimension $\Delta\sim 1/\sqrt z$ \cite{Pappadopulo:2012jk}.  In other words, the unit operator on the left-hand side maps to the large-$\De$ asymptotics of the sum over operators on the right-hand side.  This is a general feature of the crossing equation --- it cannot be satisfied block-by-block.
+
+One can also show \cite{Pappadopulo:2012jk} that the conformal block expansion converges exponentially in $\De$ whenever $|\rho|\leq 1$, where $\rho$ is defined in (\ref{eq:radialcoordinatedefinition}).  In particular, this means that both sides of the crossing equation converge exponentially in a finite neighborhood of the point $z=\bar z=\frac 1 2$, which will play an important role in the next section.
+
+Analyzing different limits of the crossing equation can give other information about the CFT spectrum.  For example, the limit $z\to 0$ with $\bar z$ fixed gives information about operators with large spin \cite{Alday:2007mf,Fitzpatrick:2012yx,Komargodski:2012ek,Alday:2015ewa}.
+
 \subsection{Crossing Symmetry}
 \subsection{Spectrum of Primary Operator}
-
-\section{Introduction to Conformal Bootstrap and Its Language}
-
-This section encompasses the first three chapters of Simmons-Duffin's TASI lecture notes \cite{simmonsduffin2016tasilecturesconformalbootstrap}, where we provide a brief overview of the bootstrapping philosophy, along with the foundational language and conventions used in this field.
-
-\subsection{Bootstrap Philosophy}
-The critical universality of many microscopic theories allows us to focus on the CFT.
-
-\subsection{Path Integral Quantization}
-Path integral formalism chooses a specific time direction, and spacetime is divided into successive slices. Each slice is associated with a Hilbert space of states in the Heisenberg picture, and the progression from one slice to the next is governed by time evolution. The general correlator is defined as follows:
-
-\begin{equation}
-    \langle\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle = \bra{0}\text{T}\left\{\hat{\mathcal{O}_1}(t_1,\mathbf{x}_1)\cdots\hat{\mathcal{O}_n}(t_n,\mathbf{x}_n)\right\}\ket{0}
-\end{equation}
-
-Here, note that the L.H.S represents a product of spacetime functions. At the same time, the R.H.S. is a product of operators in the Heisenberg picture, defined in distinct Hilbert spaces corresponding to each slice. This is the familiar form of the correlator within the path integral framework.
-
-\subsection{Stress Energy and Topological Surface Operator}
-Consider a quantum field theory (QFT) coupled to a background metric $g$,  with correlators defined within the path integral formalism in Euclidean signature. 
-\begin{equation}
-    \bra{0}\text{T}\left\{\hat{\mathcal{O}_1}(t_1,\mathbf{x}_1)\cdots\hat{\mathcal{O}_n}(t_n,\mathbf{x}_n)\right\}\ket{0}_{g} = \int{\prod_{y}d\phi(y)\,\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)e^{-S[g,\phi]}}
-\end{equation}
-The stress-energy tensor acts as the conserved current associated with the diffeomorphism invariance of the action $S[g,\phi]$ in the flat spacetime limit $g\rightarrow\eta$.
-% \begin{equation}
-%     \langle T^{\mu\nu}(x)\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle_g = \frac{2}{\sqrt{|g(x)|}}\frac{\delta}{\delta g_{\mu\nu}(x)}\langle\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle_{g}
-% \end{equation}
-% Around the flat spacetime limit, we derive the familiar Ward-Takahashi identity\footnote{See appendix.}:
-Consequently, we obtain the familiar Ward-Takahashi identity:
-\begin{equation}
-    \partial_{\mu}\langle T^{\mu\nu}(x)\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle = -\sum_{i}\delta^4(x-x_i)\partial^{\nu}_{i}\langle\mathcal{O}_1(x_1)\cdots\mathcal{O}_n(x_n)\rangle
-\end{equation}
-
-Define \textbf{topological surface operator}:
-\begin{equation}
-    P^{\nu}(\Sigma)\equiv-\int_{\Sigma}{dS_{\mu}}T^{\mu\nu}(x)
-\end{equation}
-The integral is taken over a closed hypersurface within the spacetime manifold, which can be considered as the boundary of a ball $B$. The presence of delta functions in the Ward-Takahashi identity allows for the deformation of this closed hypersurface, provided that the deformation does not intersect additional spacetime points. Let's consider a ball $B$ that encloses a spacetime point $x$ where an operator $\mathcal{O}(x)$ insertion occurs. In this case, the volume integral over the ball transforms into a surface integral over the boundary of $B$ on the L.H.S:
-\begin{equation}
-\begin{split}
-    \langle P^{\nu}(\Sigma)\mathcal{O}(x)\cdots\rangle = \int_{B}{d^4y\delta^4(y-x)}\partial^{\nu}_{x}\langle\mathcal{O}(x)\cdots\rangle\\
-    =\partial^{\nu}\langle\mathcal{O}(x)\cdots\rangle
-\end{split}
-\end{equation}
-\indent As long as no additional spacetime points with operator insertions are crossed, the surface \( \Sigma \) can be freely deformed from one slice to another, maintaining the invariance of \( P^{\mu}(\Sigma) \). This invariance implies that the momentum \( P^{\mu}(\Sigma) \) is topological in the path integral formulation, which in turn indicates that it is conserved.
-Now, consider two spatial slices at times \( t_1 \) and \( t_2 \) within the spacetime manifold, with \( t_1 < t_2 \). Suppose there is an operator insertion \( \mathcal{O}(t, \mathbf{x}) \) at a time \( t \) such that \( t_1 < t < t_2 \). If we "sandwich" this operator between the slices at \( t_1 \) and \( t_2 \), then:
-
-\begin{equation}
-    \lim_{t_1\rightarrow t_2^{-}}\langle P^{\mu}(\Sigma_2)\mathcal{O}(x)\cdots\rangle-\langle P^{\mu}(\Sigma_1)\mathcal{O}(x)\cdots\rangle = \bra{0}\text{T}\left\{\left[\hat{P}^\mu,\hat{\mathcal{O}}(x)\right]\cdots\right\}\ket{0}
-\end{equation}
-The appearance of the commutator on the R.H.S arises due to the time ordering in the correlation function. Since the momentum \( P^{\mu}(\Sigma) \) is topological, we can deform \( \Sigma_2 - \Sigma_1 \) to a sphere \( S \) that encloses the local point \( x \):
-\[
-    \lim_{t_1\rightarrow t_2^{-}}\langle P^{\mu}(\Sigma_2)\mathcal{O}(x)\cdots\rangle-\langle P^{\mu}(\Sigma_1)\mathcal{O}(x)\cdots\rangle = \langle P^{\mu}(S)\mathcal{O}(x)\cdots\rangle 
-\]
-\[
-    =\partial_{x}^{\mu}\langle\mathcal{O}(x)\cdots\rangle
-\]
-This is the familiar commutation relation for the momentum operator in quantum mechanics:
-\begin{equation}
-    \left[\hat{P}^{\mu}, \hat{\mathcal{O}}(x)\right] = \partial^{\mu}\hat{\mathcal{O}}(x)
-\end{equation}
-At first glance, the L.H.S of Eq(1.7) appears to be non-local because the topological momentum operator is expressed as a surface integral over a finite spacetime volume. However, by progressively deforming the boundary \( \Sigma \) to concentrate around the enclosed singularity increasingly, we reveal the locality of the transformation, as shown on the R.H.S of Eq(1.7).
-\subsection{Conformal Algebra}
-Next, we can consider more symmetries, especially symmetries of general coordinate transform, infinitesimally,
-\begin{equation}
-    x^{\mu}\rightarrow x'^{\mu} = x^{\mu} + \epsilon^{\nu}(x)
-\end{equation}
-the corresponding conserved charge\footnote{One might argue why local symmetry can have a conserved charge, however, here we should view them as a special case.} as an infinitesimal transformation generator:
-\begin{equation}
-    Q_{\epsilon}(\Sigma) = -\int_{\Sigma}{dS_{\mu}\,}\epsilon_{\nu}(x)T^{\mu\nu}(x)
-\end{equation}
-Stress energy $T^{\mu\nu}(x)$ is assumed to be conserved, symmetry, and \textit{traceless}\footnote{Tracelessness of stress energy is related to conformal symmetry, as we're about to show.}, then the conservation of $Q$ implies:
-\[
-    \partial_{\mu}(\epsilon_{\nu}T^{\mu\nu}(x)) = 0
-\]
-\[
-    =\frac{1}{2}\left(\partial_{\mu}\epsilon_{\nu}(x)+\partial_{\nu}\epsilon_{\mu}(x)\right)\cdot T^{\mu\nu}(x)
-\]
-Then, traceless $T^{\mu\nu}(x)$ leads to conformal Killing equation:
-\begin{equation}
-    \partial_{\mu}\epsilon_{\nu}(x) + \partial_{\nu}\epsilon_{\mu}(x) = \eta_{\mu\nu}c(x)
-\end{equation}
-Constant spacetime translation satisfies the equation and the corresponding conserved charge $Q_{\epsilon}$ is momentum, and we'll discuss more symmetries that are solutions to the conformal Killing equation in the appendix. In terms of $\epsilon(x)$, $c(x) = 2/d\,\partial\cdot\epsilon(x)$. To see how metric transforms, first consider,
-\[
-    \frac{\partial x'^{\mu}}{\partial x^{\nu}} = \delta^{\mu}_{\nu} + \partial_{\nu}\epsilon^{\mu}(x)
-\]
-\begin{equation}
-    \approx \left(1+\frac{c(x)}{2}\right)\left(\delta^{\mu}_{\nu} + \frac{1}{2}(\partial_{\nu}\epsilon^{\mu}-\partial^{\mu}\epsilon_{\nu})\right)
-\end{equation}
-where we've used conformal Killing equation and ignore $\mathcal{O}(\epsilon^2)$ terms. The R.H.S of Eq(1.11) is an infinitesimal rescaling times an infinitesimal rotation. Equivalently, the transformation $x\rightarrow x'$ governed by the conformal Killing equation and stress energy rescales the metric by a scalar factor, and such transformations are called \textit{conformal}\footnote{By conformal, we mean the angles between two curves' intersections are invariant under the transformations, as can be seen from the transformation of metric.}.
-
 \section*{Appendix}
 \subsection*{Derivation of Ward-Takahashi Identity for Stress Energy}
 Recall the definition of stress-energy in QFT with a background metric $g$:
