@@ -921,29 +921,33 @@ u = z\bar z = \frac{x_{12}^2 x_{34}^2}{x_{13}^2 x_{24}^2},\qquad v=(1-z)(1-\bar 
 \ee
 
 
-\item Crossing symmetry is equivalent to the condition that our four-point function is invariant under $1\leftrightarrow 3$ or $2\leftrightarrow 4$,
-% \be
-% \label{eq:crossingeqsummary}
-% g(u,v) &=& \p{\frac{u}{v}}^{\De_\f} g(v,u).
-% \ee
-Eq.~(\ref{eq:invariantunderonetwo}) shows that invariance of the four-point function under $1\leftrightarrow 2$ or $3\leftrightarrow 4$ is true block-by-block.  All other permutations can be generated from these.
+\item Crossing symmetry is equivalent to the condition that the four-point function is invariant under the exchange $1\leftrightarrow 3$ or $2\leftrightarrow 4$ and $1\leftrightarrow2$ or $3\leftrightarrow4$,
+\be
+\label{eq:crossing1324}
+g(u,v) &=& \p{\frac{u}{v}}^{\De_\f} g(v,u).
+\ee
+% Also (\ref{eq:invariantunderonetwo}) shows that invariance of the four-point function under $1\leftrightarrow 2$ or $3\leftrightarrow 4$.  
+\be
+\label{eq:crossing1234}
+g(u,v) &=& g(\frac u v,\frac 1 v)
+\ee
+All other permutations can be generated from these.
 
 \end{itemize}
 
-We know at least two operators present in the $\f\x\f$ OPE: the unit operator and the stress tensor.  Normalizing $\f$ so that $\<\f(x)\f(0)\>=x^{-2\De_\f}$, we have $f_{\f\f\mathbf{1}}=1$.  The stress tensor three-point coefficient is set by Ward identities to be $f_{\f\f T_{\mu\nu}}\propto \De_\f/\sqrt{C_T}$, where $C_T$ is the coefficient of the two-point function of the canonically normalized stress tensor (\ref{eq:twopointfunctionofspinL}).  The factor of $1/\sqrt{C_T}$ relative to (\ref{eq:stresstensorward}) comes from choosing the basis of operators $\cO$ to be orthonormal.
-
-
+% We know at least two operators present in the $\f\x\f$ OPE: the unit operator and the stress tensor.  Normalizing $\f$ so that $\<\f(x)\f(0)\>=x^{-2\De_\f}$, we have $f_{\f\f\mathbf{1}}=1$.  The stress tensor three-point coefficient is set by Ward identities to be $f_{\f\f T_{\mu\nu}}\propto \De_\f/\sqrt{C_T}$, where $C_T$ is the coefficient of the two-point function of the canonically normalized stress tensor (\ref{eq:twopointfunctionofspinL}).  The factor of $1/\sqrt{C_T}$ relative to (\ref{eq:stresstensorward}) comes from choosing the basis of operators $\cO$ to be orthonormal.
 \subsection{An Infinite Number of Primaries}
 
-To get a feel for the crossing equation (\ref{eq:crossingeqsummary}), let us consider a simple limit: $z\to 0$ with $z=\bar z$. This corresponds to $x_2\to x_1$ with all four operators collinear.
+Consider a limit $x_2\to x_1$, equivalent to $z\to 0$ with $z=\bar z$.
 
-Recall that the blocks go like $g_{\De}(u,v)\sim (z\bar z)^{\De/2}$ in this limit, so the left-hand side of (\ref{eq:crossingeqsummary}) is dominated by the smallest dimension operator in the OPE, the unit operator:
+Recall that the blocks go like $g_{\De}(u,v) \sim u^{\De/2}(1+\cdots) \sim (z\bar z)^{\De/2}$ in this limit, so the left-hand side of (\ref{eq:crossing1324}) is dominated by the unit operator, which is the smallest dimension ($\De = 0$) operator in the OPE:
 \be
 \mathrm{LHS} &:& 1+\dots \qquad(z\to 0).
 \ee
 
-Crossing $u\leftrightarrow v$ corresponds to $(z,\bar z)\to (1-z,1-\bar z)$.  In the limit $z\to 0$, the crossed conformal blocks $g_{\De}(1-z,1-z)$ go like $\log z$.
+The crossing symmetry $u\leftrightarrow v$ corresponds to $(z,\bar z)\to (1-z,1-\bar z)$.  In the limit $z\to 0$, the crossed conformal blocks $g_{\De}(1-z,1-z)$ go like $\log z$.
 % \begin{exercise}
+
 Check this for the explicit formulae (\ref{eq:explicitblock2d}) and (\ref{eq:explicitblock4d}).
 % \end{exercise}
 Thus, each term on the right-hand side goes like
