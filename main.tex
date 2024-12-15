@@ -945,26 +945,31 @@ Recall that the blocks go like $g_{\De}(u,v) \sim u^{\De/2}(1+\cdots) \sim (z\ba
 \mathrm{LHS} &:& 1+\dots \qquad(z\to 0).
 \ee
 
-The crossing symmetry $u\leftrightarrow v$ corresponds to $(z,\bar z)\to (1-z,1-\bar z)$.  In the limit $z\to 0$, the crossed conformal blocks $g_{\De}(1-z,1-z)$ go like $\log z$.
+The crossing symmetry $u\leftrightarrow v$ corresponds to $(z,\bar z)\to (1-z,1-\bar z)$. 
+In the limit $z\to 0$, each conformal block $g_{\De}((1-z)(1-\bar{z}),z\bar{z})\rightarrow\log z$.
 % \begin{exercise}
 
-Check this for the explicit formulae (\ref{eq:explicitblock2d}) and (\ref{eq:explicitblock4d}).
+% Check this for the explicit formulae (\ref{eq:explicitblock2d}) and (\ref{eq:explicitblock4d}).
 % \end{exercise}
 Thus, each term on the right-hand side goes like
 \be
 \label{eq:rhsterms}
-\textrm{each term, RHS} &:& z^{2\De_\f}\log z + \dots \qquad(z\to 0).
+\textrm{each term, RHS} &:& |z|^{2\De_\f}\ln |z| + \cdots \qquad(z\to 0).
 \ee
-As $z\to 0$, any finite sum of terms of the form (\ref{eq:rhsterms}) vanishes.  Thus, for a sum of operators on the right-hand side to reproduce the unit operator on the left-hand side, we need an infinite number of primary operators.\footnote{This doesn't contradict the textbook statement that rational 2d CFTs contain a finite number of primary operators.  In that context, ``primary" refers to primary operators concerning the Virasoro algebra.  Here, we are discussing primaries concerning the global conformal group, which is $\mathrm{SL}(2,\R)\x\mathrm{SL}(2,\R)$ in 2d.  A single Virasoro representation contains an infinite number of global conformal representations.}
+As $z\to 0$, any finite sum of terms of the form (\ref{eq:rhsterms}) vanishes.  Thus, for a sum of operators on the right-hand side to reproduce that on the left-hand side, {\bf an infinite number of primary operators is needed}.
+% \footnote{This doesn't contradict the textbook statement that rational 2d CFTs contain a finite number of primary operators.  In that context, ``primary" refers to primary operators concerning the Virasoro algebra.  Here, we are discussing primaries concerning the global conformal group, which is $\mathrm{SL}(2,\R)\x\mathrm{SL}(2,\R)$ in 2d.  A single Virasoro representation contains an infinite number of global conformal representations.}
 
-One can prove that as $z\to 0$, the sum on the right-hand side is dominated by operators of dimension $\Delta\sim 1/\sqrt z$ \cite{Pappadopulo:2012jk}.  In other words, the unit operator on the left-hand side maps to the large-$\De$ asymptotics of the sum over operators on the right-hand side.  This is a general feature of the crossing equation --- it cannot be satisfied block-by-block.
+% One can prove that as $z\to 0$, the sum on the right-hand side is dominated by operators of dimension $\Delta\sim 1/\sqrt z$ \cite{Pappadopulo:2012jk}.  
+% In other words, the unit operator on the left-hand side maps to the large-$\De$ asymptotics of the sum over operators on the right-hand side.  
+The general feature of the crossing equation (\ref{eq:graphicalcrossing}) is that it cannot be satisfied block-by-block.
+% One can also show \cite{Pappadopulo:2012jk} that the conformal block expansion converges exponentially in $\De$ whenever $|\rho|\leq 1$, where $\rho$ is defined in (\ref{eq:radialcoordinatedefinition}).  In particular, this means that both sides of the crossing equation converge exponentially in a finite neighborhood of the point $z=\bar z=\frac 1 2$, which will play an important role in the next section.
+Analyzing different limits of the crossing equation can give other consistent information about the distribution of $\De$ of primaries, which is called "CFT spectrum".  
+% For example, the limit $z\to 0$ with $\bar z$ fixed gives information about operators with large spin \cite{Alday:2007mf,Fitzpatrick:2012yx,Komargodski:2012ek,Alday:2015ewa}.
 
-One can also show \cite{Pappadopulo:2012jk} that the conformal block expansion converges exponentially in $\De$ whenever $|\rho|\leq 1$, where $\rho$ is defined in (\ref{eq:radialcoordinatedefinition}).  In particular, this means that both sides of the crossing equation converge exponentially in a finite neighborhood of the point $z=\bar z=\frac 1 2$, which will play an important role in the next section.
+% \subsection{Crossing Symmetry}
+% \subsection{Spectrum of Primary Operator}
+\section{Conclusion}
 
-Analyzing different limits of the crossing equation can give other information about the CFT spectrum.  For example, the limit $z\to 0$ with $\bar z$ fixed gives information about operators with large spin \cite{Alday:2007mf,Fitzpatrick:2012yx,Komargodski:2012ek,Alday:2015ewa}.
-
-\subsection{Crossing Symmetry}
-\subsection{Spectrum of Primary Operator}
 \section*{Appendix}
 \subsection*{Derivation of Ward-Takahashi Identity for Stress Energy}
 Recall the definition of stress-energy in QFT with a background metric $g$:
